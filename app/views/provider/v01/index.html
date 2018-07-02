@@ -1,0 +1,42 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Home - Manage ITT applications
+{% endblock %}
+
+{% block content %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#"></a>
+    </li>
+  </ol>
+</div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l pageTitle">Manage applications</h1>
+        <p class="govuk-body">Applications received for the recruitment year 2018-19</p>
+        <div class="dashboard-items">
+          <div class="dashboard-block status-in-progress">
+            <p>12</br><span>New applications</span></p>
+          </div>
+          <div class="dashboard-block status-in-progress">
+            <p>32</br><span>Interview offers</span></p>
+          </div>
+          <div class="dashboard-block status-in-progress">
+            <p>17</br><span>Conditional offers</span></p>
+          </div>
+          <div class="dashboard-block status-ok">
+            <p>23</br><span>Unconditional offers</span></p>
+          </div>
+          <div class="dashboard-block status-reject">
+            <p>19</br><span>Rejected</span></p>
+          </div>
+          <div onclick="location.href='allApplications.html';" style="cursor: pointer;" class="dashboard-block status-none">
+            <p>103</br><span>Total applications</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

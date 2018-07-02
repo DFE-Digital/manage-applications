@@ -1,0 +1,133 @@
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+
+// Import GOV.UK Frontend
+@import "node_modules/govuk-frontend/all";
+
+// Patterns that aren't in Frontend
+@import "patterns/check-your-answers";
+@import "patterns/task-list";
+@import "patterns/related-items";
+
+// Components that aren't in Frontend
+@import "components/cookie-banner";
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.govuk-breadcrumbs{
+  margin-top:10px !important;
+  margin-bottom:20px !important;
+}
+.govuk-main-wrapper{
+  padding-top:10px !important;
+}
+.pageTitle{
+  margin-bottom: 5px !important;
+}
+.dashboard-items{
+  margin-top: 50px;
+}
+.status-tag{
+  padding: 1px 5px 1px 5px;
+  display: inline-block;
+}
+.status-tag p{
+  margin-bottom: 0px;
+}
+.application-sub-section{
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
+.application-section{
+  margin-top: 50px;
+    clear: both;
+}
+.application-section dt{
+  width: 25%;
+  margin: 0px 0px 10px 0px;
+  float: left;
+  clear: both;
+}
+.application-section dd{
+  float: left;
+}
+.pseudo-p{
+  margin: 0px !important;
+  padding: 0px !important;
+}
+.pageSubTitle{
+  margin-bottom: 10px;
+}
+.status-in-progress{
+  background: #F2F8FF;
+  border-radius: 4px;
+  border: 1px solid #859BB6;
+}
+.status-reject{
+  background: #FFEAEA;
+  border-radius: 4px;
+  border: 1px solid #C21515;
+}
+.status-ok{
+  background: #F5F8F0;
+  border-radius: 4px;
+  border: 1px solid #3B8234;
+}
+.status-none{
+  background: #FFFFFF;
+  border-radius: 4px;
+  border: 1px solid #9B9B9B;
+}
+.dashboard-block{
+  float: left;
+}
+
+.dashboard-block p{
+  font-size: 48px;
+  font-weight: bold;
+  margin:40px;
+}
+.dashboard-block p span{
+  font-size: 16px;
+}
+.apply-list {
+
+}
+.apply-list tbody td{
+  padding: 20px 0px 20px 0px !important;
+}
+.apply-list-header{
+  border-top:1px solid #000000;
+  border-bottom:1px solid #000000 !important;
+}
+.list-controls{
+
+}
+.manage-list-filter{
+  width:200px;
+  float: left;
+  padding-right: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 600px) {
+    .dashboard-block {
+        width: 100%;
+        margin-bottom: 2%;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .dashboard-block {
+        width: 47%;
+        margin-right: 2%;
+        margin-bottom: 2%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .dashboard-block {
+        width: 31%;
+        margin-right: 2%;
+        margin-bottom: 2%;
+    }
+}
