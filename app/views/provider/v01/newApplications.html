@@ -1,4 +1,3 @@
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -29,10 +28,14 @@ New Applications - Manage ITT applications
     <div class="dashboard-items">
       <div class="list-controls">
         <div class="govuk-form-group manage-list-filter">
-          {{macros.statusFilter()}}
+          <select class="govuk-select" id="sort" name="sort">
+            <option value="published" selected>All statuses</option>
+          </select>
         </div>
         <div class="govuk-form-group manage-list-filter">
-          {{macros.subjectFilter()}}
+          <select class="govuk-select" id="sort" name="sort">
+            <option value="published" selected>All subjects</option>
+          </select>
         </div>
       </div>
       <table class="govuk-table apply-list">
@@ -54,30 +57,30 @@ New Applications - Manage ITT applications
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Becky</a></td>
-            <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Brother</a></td>
-            <td class="govuk-table__cell "><div class="status-reject status-tag">Rejected</div></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Becky</a></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Brother</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">New application</div></td>
             <td class="govuk-table__cell ">Communication and media studies</td>
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell "><a href="applications/unconditionalOfferApplication.html">Charlie</a></td>
-            <td class="govuk-table__cell "><a href="applications/unconditionalOfferApplication.html">April</a></td>
-            <td class="govuk-table__cell "><div class="status-ok status-tag">Unconditional offer</div></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Charlie</a></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">April</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">New application</div></td>
             <td class="govuk-table__cell ">Chemistry</td>
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell "><a href="applications/conditionalOfferApplication.html">Charolate</a></td>
-            <td class="govuk-table__cell "><a href="applications/conditionalOfferApplication.html">Campbel</a></td>
-            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Conditional offer</div></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Charolate</a></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Campbel</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">New application</div></td>
             <td class="govuk-table__cell ">Biology</td>
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Daniel</a></td>
-            <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Jenning</a></td>
-            <td class="govuk-table__cell "><div class="status-reject status-tag">Rejected</div></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Daniel</a></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Jenning</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">New application</div></td>
             <td class="govuk-table__cell ">Mathematics</td>
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>
@@ -89,37 +92,37 @@ New Applications - Manage ITT applications
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Esther</a></td>
-            <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Fairley</a></td>
-            <td class="govuk-table__cell "><div class="status-reject status-tag">Rejected</div></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Esther</a></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Fairley</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">New application</div></td>
             <td class="govuk-table__cell ">Communication and media studies</td>
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell "><a href="applications/unconditionalOfferApplication.html">Charlie</a></td>
-            <td class="govuk-table__cell "><a href="applications/unconditionalOfferApplication.html">April</a></td>
-            <td class="govuk-table__cell "><div class="status-ok status-tag">Unconditional offer</div></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Charlie</a></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">April</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">New application</div></td>
             <td class="govuk-table__cell ">Mathematics</td>
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell "><a href="applications/conditionalOfferApplication.html">Ezy</a></td>
-            <td class="govuk-table__cell "><a href="applications/conditionalOfferApplication.html">Lilly</a></td>
-            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Conditional offer</div></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Ezy</a></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Lilly</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">New application</div></td>
             <td class="govuk-table__cell ">Chemistry</td>
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Felix</a></td>
-            <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Jenning</a></td>
-            <td class="govuk-table__cell "><div class="status-reject status-tag">Rejected</div></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Felix</a></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Jenning</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">New application</div></td>
             <td class="govuk-table__cell ">Biology</td>
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Frank</a></td>
-            <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Jacobs</a></td>
-            <td class="govuk-table__cell "><div class="status-reject status-tag">Rejected</div></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Frank</a></td>
+            <td class="govuk-table__cell "><a href="applications/newApplication.html">Jacobs</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">New application</div></td>
             <td class="govuk-table__cell ">Primary</td>
             <td class="govuk-table__cell ">23 Jun 2018</td>
           </tr>

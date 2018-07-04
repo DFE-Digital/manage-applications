@@ -1,0 +1,86 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Change status - Manage ITT applications
+{% endblock %}
+
+{% block content %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+    beta
+  </strong>
+  <span class="govuk-phase-banner__text">
+    This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+  </span>
+</p>
+</div>
+<a href="#" class="govuk-back-link">Back</a>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-l">Change status</h2>
+    <h4 class="govuk-heading-s application-sub-section">Application details</h4>
+    <p>Sam Fairly / New application / Business studies / 2018-19</p>
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h4 class="govuk-heading-s application-sub-section">
+            Change status to
+          </h4>
+        </legend>
+        <div class="govuk-radios">
+          <div class="govuk-radios__item" >
+            <input class="govuk-radios__input" id="change-status-1" name="change-status" type="radio" value="interview-offered" onclick="radioClick(this);">
+            <label class="govuk-label govuk-radios__label" for="change-status-1">
+              Interview offered
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="change-status-2" name="change-status" type="radio" value="conditional-offer" onclick="radioClick(this);">
+            <label class="govuk-label govuk-radios__label" for="change-status-2">
+              Conditional offer
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="change-status-3" name="change-status" type="radio" value="unconditional-offer" onclick="radioClick(this);">
+            <label class="govuk-label govuk-radios__label" for="change-status-3">
+              Unconditional offer
+            </label>
+          </div>
+          <div class="govuk-radios__item" >
+            <input class="govuk-radios__input" id="change-status-4" name="change-status" type="radio" value="rejected" onclick="radioClick(this);">
+            <label class="govuk-label govuk-radios__label" for="change-status-4">
+              Rejected
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label manage-label" for="reason">
+        Reason for rejection
+      </label>
+      <select class="govuk-select" id="reason" name="reason">
+        <option>Select a reason</option>
+        <option value="unqualified">Missing required qualifications</option>
+        <option value="candidateRejectedInterview">Candidate rejected the interview</option>
+        <option value="failedInterview">Rejected at interview</option>
+        <option value="noAccept">Candidate did not accept offer</option>
+        <option value="conditionsNotMet">Candidate did not meet conditions</option>
+      </select>
+    </input>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+function radioClick(statusRadio){
+  if(statusRadio.value == 'rejected'){
+    console.log("Rejeted");
+  }
+  else{
+    console.log("Something else");
+  }
+}
+</script>
+{% endblock %}

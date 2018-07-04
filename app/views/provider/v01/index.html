@@ -6,6 +6,15 @@
 {% endblock %}
 
 {% block content %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  beta
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
 <div class="govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
     <li class="govuk-breadcrumbs__list-item">
@@ -18,19 +27,19 @@
         <h1 class="govuk-heading-l pageTitle">Manage applications</h1>
         <p class="govuk-body">Applications received for the recruitment year 2018-19</p>
         <div class="dashboard-items">
-          <div class="dashboard-block status-in-progress">
+          <div onclick="location.href='newApplications.html';" style="cursor: pointer;" class="dashboard-block status-in-progress">
             <p>12</br><span>New applications</span></p>
           </div>
-          <div class="dashboard-block status-in-progress">
+          <div onclick="location.href='interviewOfferApplications.html';" style="cursor: pointer;" class="dashboard-block status-in-progress">
             <p>32</br><span>Interview offers</span></p>
           </div>
-          <div class="dashboard-block status-in-progress">
+          <div onclick="location.href='conditionalOfferApplications.html';" style="cursor: pointer;" class="dashboard-block status-in-progress">
             <p>17</br><span>Conditional offers</span></p>
           </div>
-          <div class="dashboard-block status-ok">
+          <div onclick="location.href='unconditionalOfferApplications.html';" style="cursor: pointer;" class="dashboard-block status-ok">
             <p>23</br><span>Unconditional offers</span></p>
           </div>
-          <div class="dashboard-block status-reject">
+          <div onclick="location.href='rejectedApplications.html';" style="cursor: pointer;" class="dashboard-block status-reject">
             <p>19</br><span>Rejected</span></p>
           </div>
           <div onclick="location.href='allApplications.html';" style="cursor: pointer;" class="dashboard-block status-none">

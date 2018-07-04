@@ -1,0 +1,137 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+New Applications - Manage ITT applications
+{% endblock %}
+
+{% block content %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  beta
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="index.html">Home</a>
+    </li>
+  </ol>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l pageTitle">Manage applications</h1>
+    <p class="govuk-body">Applications received for the recruitment year 2018-19</p>
+    <div class="dashboard-items">
+      <div class="list-controls">
+        <div class="govuk-form-group manage-list-filter">
+          <select class="govuk-select" id="sort" name="sort">
+            <option value="published" selected>All statuses</option>
+          </select>
+        </div>
+        <div class="govuk-form-group manage-list-filter">
+          <select class="govuk-select" id="sort" name="sort">
+            <option value="published" selected>All subjects</option>
+          </select>
+        </div>
+      </div>
+      <table class="govuk-table apply-list">
+        <thead class="govuk-table__head apply-list-header">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header apply-list-header" scope="col">First name</th>
+            <th class="govuk-table__header apply-list-header" scope="col">Last name</th>
+            <th class="govuk-table__header apply-list-header" scope="col">Status</th>
+            <th class="govuk-table__header apply-list-header" scope="col">Subject</th>
+            <th class="govuk-table__header apply-list-header" scope="col">Received on</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Alexandra</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Beckam</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Biology</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Becky</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Brother</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Communication and media studies</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Charlie</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">April</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Chemistry</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Charolate</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Campbel</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Biology</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Daniel</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Jenning</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Mathematics</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Elizabeth</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Rose</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Business studies</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Esther</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Fairley</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Communication and media studies</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Charlie</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">April</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Mathematics</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Ezy</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Lilly</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Chemistry</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Felix</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Jenning</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Biology</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Frank</a></td>
+            <td class="govuk-table__cell "><a href="applications/interviewOfferedApplication.html">Jacobs</a></td>
+            <td class="govuk-table__cell "><div class="status-in-progress status-tag">Interview offered</div></td>
+            <td class="govuk-table__cell ">Primary</td>
+            <td class="govuk-table__cell ">23 Jun 2018</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

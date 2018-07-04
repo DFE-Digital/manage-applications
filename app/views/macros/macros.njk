@@ -1,0 +1,21 @@
+{% macro statusFilter() %}
+<select class="govuk-select" id="statusFilter" name="statusFilter">
+  <option value="allStatus" selected>All statuses</option>
+  <option value="new" >New application</option>
+  <option value="interviewOffered" >Interview offered</option>
+  <option value="conditionalOffer" >Conditional offer</option>
+  <option value="unconditionalOffer" >Unconditional offer</option>
+  <option value="rejected" >Rejected</option>
+</select>
+{% endmacro %}
+
+{% macro subjectFilter() %}
+<select class="govuk-select" id="subjectFilter" name="subjectFilter">
+  <option value="allSubjects" selected>All subjects</option>
+  <option value="new" >Biology</option>
+  <option value="interviewOffered" >Mathematics</option>
+  <option value="conditionalOffer" >Primary</option>
+  <option value="unconditionalOffer" >Communication and media studies</option>
+  <option value="rejected" >Business studies</option>
+</select>
+{% endmacro %}
