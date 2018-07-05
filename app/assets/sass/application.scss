@@ -134,3 +134,32 @@ $govuk-global-styles: true;
 .manage-label{
   font-weight: bold;
 }
+.clearer{
+  clear:both;
+}
+.change-status-meta-data-item{
+  float: left;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+.change-status-meta-data{
+
+}
+.change-status-header{
+  padding-top: 20px;
+}
+
+.govuk-template__body{
+  color: #0b0c0c;
+  font-family: "nta", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 20px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.manage-button{
+  
+}

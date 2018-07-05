@@ -15,16 +15,26 @@ Change status - Manage ITT applications
   </span>
 </p>
 </div>
-<a href="#" class="govuk-back-link">Back</a>
+<a href="#" class="govuk-back-link" onclick="window.history.back();">Back</a>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h2 class="govuk-heading-l">Change status</h2>
-    <h4 class="govuk-heading-s application-sub-section">Application details</h4>
-    <p>Sam Fairly / New application / Business studies / 2018-19</p>
+    <h1 class="govuk-heading-l pageTitle">Application for</h1>
+    <h3 class="govuk-heading-s pageSubTitle">Communication and media studies, 2018/19</h3>
+    <div class="status-in-progress status-tag"><p>New application</p></div>
+    <div class="application-section">
+      <h2 class="govuk-heading-m">Candidate details</h2>
+      <dl>
+        <dt><p class="pseudo-p">First name</p></dt>
+        <dd><p class="pseudo-p">Sam</p></dd>
+        <dt><p class="pseudo-p">Last name</p></dt>
+        <dd><p class="pseudo-p">Fairley</p></dd>
+      </dl>
+    </div>
+    <div class="clearer"></div>
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
-          <h4 class="govuk-heading-s application-sub-section">
+          <h4 class="govuk-heading-m application-sub-section">
             Change status to
           </h4>
         </legend>
@@ -56,30 +66,48 @@ Change status - Manage ITT applications
         </div>
       </fieldset>
     </div>
+    <div id="rejection-reason" style="display:none">
+      <div class="govuk-form-group">
+        <label class="govuk-label manage-label" for="reason">
+          Reason for rejection
+        </label>
+        <select class="govuk-select" id="reason" name="reason">
+          <option>Select a reason</option>
+          <option value="unqualified">Missing required qualifications</option>
+          <option value="candidateRejectedInterview">Candidate rejected the interview</option>
+          <option value="failedInterview">Rejected at interview</option>
+          <option value="noAccept">Candidate did not accept offer</option>
+          <option value="conditionsNotMet">Candidate did not meet conditions</option>
+          <option value="other">Other reason</option>
+        </select>
+      </input>
+    </div>
     <div class="govuk-form-group">
-      <label class="govuk-label manage-label" for="reason">
-        Reason for rejection
+      <label class="govuk-label manage-label" for="comments">
+        Comments
       </label>
-      <select class="govuk-select" id="reason" name="reason">
-        <option>Select a reason</option>
-        <option value="unqualified">Missing required qualifications</option>
-        <option value="candidateRejectedInterview">Candidate rejected the interview</option>
-        <option value="failedInterview">Rejected at interview</option>
-        <option value="noAccept">Candidate did not accept offer</option>
-        <option value="conditionsNotMet">Candidate did not meet conditions</option>
-      </select>
-    </input>
+      <textarea class="govuk-textarea" id="comments" name="comments" rows="5" aria-describedby="Comments about why this candidate is being rejected"></textarea>
+    </div>
+  </div>
+  <div class="govuk-form-group">
+    <div class="manage-button">
+      <button type="submit" aria-disabled="true" class="govuk-button">
+        Change status
+      </button>
+    </div>
+    <a href="#">Cancel</a>
   </div>
 </div>
 </div>
 
 <script type="text/javascript">
 function radioClick(statusRadio){
+  reject_section = document.getElementById("rejection-reason");
   if(statusRadio.value == 'rejected'){
-    console.log("Rejeted");
+    reject_section.style.display="block";
   }
   else{
-    console.log("Something else");
+    reject_section.style.display="none";
   }
 }
 </script>
