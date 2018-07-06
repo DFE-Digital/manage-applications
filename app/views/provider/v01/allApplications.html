@@ -23,10 +23,17 @@ New Applications - Manage ITT applications
   </ol>
 </div>
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l pageTitle">Manage applications</h1>
     <p class="govuk-body">Applications received for the recruitment year 2018-19</p>
-    <div class="dashboard-items">
+  </div>
+  <div class="govuk-grid-column-one-third">
+    {{macros.searchBox()}}
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div>
       <div class="list-controls">
         <div class="govuk-form-group manage-list-filter">
           {{macros.statusFilter()}}

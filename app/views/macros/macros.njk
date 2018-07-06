@@ -19,3 +19,11 @@
   <option value="rejected" >Business studies</option>
 </select>
 {% endmacro %}
+
+{%macro searchBox()%}
+<h4 class="govuk-heading-s pageTitle">Search applicants</h4>
+<div class="govuk-form-group">
+  <input placeholder="Search by applicant name" class="govuk-input search-box" id="search" name="search" type="text" aria-describedby="search by applicant name">
+  <a href="searchResults.html" class="search-icon"> <img src="/images/search-icon.png" alt="O"> </a>
+</div>
+{% endmacro %}

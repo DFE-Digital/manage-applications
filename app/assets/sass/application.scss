@@ -109,7 +109,7 @@ $govuk-global-styles: true;
   margin-bottom: 20px;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 0px) {
     .dashboard-block {
         width: 100%;
         margin-bottom: 2%;
@@ -129,6 +129,15 @@ $govuk-global-styles: true;
         width: 31%;
         margin-right: 2%;
         margin-bottom: 2%;
+    }
+    .search-box{
+        width:250px;
+    }
+    .search-icon{
+      background-color: #006435;
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 7px 15px 7px 15px;
     }
 }
 .manage-label{
@@ -161,5 +170,8 @@ $govuk-global-styles: true;
   margin-bottom: 15px;
 }
 .manage-button{
-  
+
+}
+.clickable{
+  cursor: pointer;
 }
