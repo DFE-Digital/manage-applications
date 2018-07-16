@@ -1,0 +1,130 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Change status - Manage ITT applications
+{% endblock %}
+
+{% block content %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+    beta
+  </strong>
+  <span class="govuk-phase-banner__text">
+    This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+  </span>
+</p>
+</div>
+<a href="#" class="govuk-back-link" onclick="window.history.back();">Back</a>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Change status</h1>
+
+    <div class="application-section">
+      <h2 class="govuk-heading-m">Application details</h2>
+      <dl>
+        <dt><p class="pseudo-p">First name</p></dt>
+        <dd><p class="pseudo-p">Sam</p></dd>
+        <dt><p class="pseudo-p">Last name</p></dt>
+        <dd><p class="pseudo-p">Fairley</p></dd>
+        <dt><p class="pseudo-p">Course</p></dt>
+        <dd><p class="pseudo-p">Communication and media studies, 2018/19</p></dd>
+        <dt><p class="pseudo-p">Applicaton stage</p></dt>
+        <dd><div class="status-none status-tag"><p>New</p></div></dd>
+      </dl>
+    </div>
+    <div class="clearer"></div>
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h4 class="govuk-heading-m application-sub-section">
+            Change status to
+          </h4>
+        </legend>
+        <div class="govuk-radios">
+          <div class="govuk-radios__item" >
+            <input class="govuk-radios__input" id="change-status-1" name="change-status" type="radio" value="in-review" onclick="radioClick(this);">
+            <label class="govuk-label govuk-radios__label" for="change-status-1">
+              In review
+            </label>
+            <div id="in-review-options" style="display:none" class="govuk-inset-text">
+              <div class="govuk-form-group">
+                <label class="govuk-label manage-label" for="reason">
+                  At what review stage is the application in?
+                </label>
+                <select class="govuk-select" id="reason" name="reason">
+                  <option>Select a stage</option>
+                  <option value="unqualified">downloaded and distributed</option>
+                  <option value="candidateRejectedInterview">feedback received</option>
+                </select>
+              </input>
+            </div>
+          </div>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="change-status-2" name="change-status" type="radio" value="conditional-offer" onclick="radioClick(this);">
+            <label class="govuk-label govuk-radios__label" for="change-status-2">
+              Recruited
+            </label>
+          </div>
+          <div class="govuk-radios__item" >
+            <input class="govuk-radios__input" id="change-status-4" name="change-status" type="radio" value="rejected" onclick="radioClick(this);">
+            <label class="govuk-label govuk-radios__label" for="change-status-4">
+              Rejected
+            </label>
+            <div id="rejection-reason" style="display:none" class="govuk-inset-text">
+              <div class="govuk-form-group">
+                <label class="govuk-label manage-label" for="reason">
+                  At what stage was the candidate rejected?
+                </label>
+                <select class="govuk-select" id="reason" name="reason">
+                  <option>Select a stage</option>
+                  <option value="unqualified">at first sift (eligibility to train)</option>
+                  <option value="candidateRejectedInterview">at first sift (suitability to teach)</option>
+                  <option value="failedInterview">after interview (suitability to teach)</option>
+                  <option value="noAccept">after interview (failed to attend)</option>
+                  <option value="conditionsNotMet">offer rejected by candidate</option>
+                </select>
+              </input>
+            </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label manage-label" for="comments">
+                Comments
+              </label>
+              <textarea class="govuk-textarea" id="comments" name="comments" rows="5" aria-describedby="Comments about why this candidate is being rejected"></textarea>
+            </div>
+          </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  <div class="govuk-form-group">
+    <div class="manage-button">
+      <a type="submit" aria-disabled="true" class="govuk-button" href="newApplications.html?notification=1">
+        Save
+      </a>
+    </div>
+    <a href="#">Cancel</a>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+function radioClick(statusRadio){
+  reject_section = document.getElementById("rejection-reason");
+  inreveiw_options = document.getElementById("in-review-options");
+  if(statusRadio.value == 'rejected'){
+    reject_section.style.display="block";
+    inreveiw_options.style.display="none";
+  }
+  else if(statusRadio.value == 'in-review'){
+    reject_section.style.display="none";
+    inreveiw_options.style.display="block";
+  }
+  else{
+    reject_section.style.display="none";
+    inreveiw_options.style.display="none";
+  }
+}
+</script>
+{% endblock %}

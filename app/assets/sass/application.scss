@@ -26,6 +26,9 @@ $govuk-global-styles: true;
 .dashboard-items{
   margin-top: 50px;
 }
+.dashboard-items-v2{
+  margin-top: 50px;
+}
 .status-tag{
   padding: 1px 5px 1px 5px;
   display: inline-block;
@@ -38,8 +41,8 @@ $govuk-global-styles: true;
   margin-top: 20px;
 }
 .application-section{
+  clear: both;
   margin-top: 50px;
-    clear: both;
 }
 .application-section dt{
   width: 25%;
@@ -56,6 +59,11 @@ $govuk-global-styles: true;
 }
 .pageSubTitle{
   margin-bottom: 10px;
+}
+.status-new{
+  background: #FFF4E0;
+  border-radius: 4px;
+  border: 1px solid #ffbf47;
 }
 .status-in-progress{
   background: #F2F8FF;
@@ -122,6 +130,16 @@ $govuk-global-styles: true;
         margin-right: 2%;
         margin-bottom: 2%;
     }
+    .dashboard-items-v2 .dashboard-block:nth-child(2n+1){
+      width: 47%;
+      margin-right: 2%;
+      margin-bottom: 2%;
+    }
+    .dashboard-items-v2 .dashboard-block:nth-child(2n+0){
+      width: 50%;
+      margin-right: 0%;
+      margin-bottom: 2%;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -129,6 +147,16 @@ $govuk-global-styles: true;
         width: 31%;
         margin-right: 2%;
         margin-bottom: 2%;
+    }
+    .dashboard-items-v2 .dashboard-block:nth-child(2n+1){
+      width: 47%;
+      margin-right: 2%;
+      margin-bottom: 2%;
+    }
+    .dashboard-items-v2 .dashboard-block:nth-child(2n+0){
+      width: 50%;
+      margin-right: 0%;
+      margin-bottom: 2%;
     }
     .search-box{
         width:250px;
@@ -174,4 +202,19 @@ $govuk-global-styles: true;
 }
 .clickable{
   cursor: pointer;
+}
+.notification{
+  position: fixed;
+  bottom: 50px;
+  left:20px;
+  color: #ffffff;
+  padding:20px;
+  background: #000000;
+}
+
+.notification a{
+  text-decoration: none;
+  color: #ffffff;
+  padding-left: 20px;
+  padding-right: 10px;
 }

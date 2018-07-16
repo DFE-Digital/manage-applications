@@ -1,0 +1,76 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Home - Manage ITT applications
+{% endblock %}
+
+{% block content %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+  beta
+</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+<a href="#" class="govuk-back-link" onclick="window.history.back();">Back</a>
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#"></a>
+    </li>
+  </ol>
+</div>
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-l pageTitle">Search results for "Sam Fair"</h1>
+          <p class="govuk-body">3 applicants found</p>
+        </div>
+        <div class="govuk-grid-column-one-third">
+          {{macros.searchBox()}}
+        </div>
+    </div>
+      <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <table class="govuk-table apply-list">
+          <thead class="govuk-table__head apply-list-header">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header apply-list-header" scope="col">First name</th>
+              <th class="govuk-table__header apply-list-header" scope="col">Last name</th>
+              <th class="govuk-table__header apply-list-header" scope="col">Status</th>
+              <th class="govuk-table__header apply-list-header" scope="col">Subject</th>
+              <th class="govuk-table__header apply-list-header" scope="col">Received on</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row clickable" onclick="window.location.href = 'applications/newApplication.html';">
+              <td class="govuk-table__cell "><a href="applications/newApplication.html">Sam</a></td>
+              <td class="govuk-table__cell "><a href="applications/newApplication.html">Fair</a></td>
+              <td class="govuk-table__cell "><div class="status-none status-tag">New application</div></td>
+              <td class="govuk-table__cell ">Biology</td>
+              <td class="govuk-table__cell ">23 Jun 2018</td>
+            </tr>
+            <tr class="govuk-table__row clickable" onclick="window.location.href = 'applications/rejectedApplication.html';">
+              <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Sam</a></td>
+              <td class="govuk-table__cell "><a href="applications/rejectedApplication.html">Fairly</a></td>
+              <td class="govuk-table__cell "><div class="status-reject status-tag">Rejected</div></td>
+              <td class="govuk-table__cell ">Communication and media studies</td>
+              <td class="govuk-table__cell ">17 May 2018</td>
+            </tr>
+            <tr class="govuk-table__row clickable" onclick="window.location.href = 'applications/conditionalOfferApplication.html';">
+              <td class="govuk-table__cell "><a href="applications/conditionalOfferApplication.html">Samantha</a></td>
+              <td class="govuk-table__cell "><a href="applications/conditionalOfferApplication.html">Fairly</a></td>
+              <td class="govuk-table__cell "><div class="status-ok status-tag">Recruited</div></td>
+              <td class="govuk-table__cell ">Chemistry</td>
+              <td class="govuk-table__cell ">12 April 2018</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}
