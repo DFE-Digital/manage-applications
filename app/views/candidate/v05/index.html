@@ -1,0 +1,129 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Home - Manage ITT applications
+{% endblock %}
+
+{% block content %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+    beta
+  </strong>
+  <span class="govuk-phase-banner__text">
+    This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+  </span>
+</p>
+</div>
+<a href="#" class="govuk-back-link" onclick="window.history.back();">Back</a>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Your application
+    </h1>
+    <h3 class="govuk-heading-m">You are applying for a PGCE in English at the Academies Enterprise Trust: South East</h3>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Course details
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <div class="panel panel-border-narrow courseDetails">
+          <table class="summaryTable">
+            <tr>
+              <td>Course name:</td>
+              <td>Business studies</td>
+            </tr>
+            <tr>
+              <td>Qualification:</td>
+              <td>Postgraduate certificate in education (PGCE) with qualified teacher status (QTS)</td>
+            </tr>
+            <tr>
+              <td>Training provider:</td>
+              <td>Goldsmiths, University of London</td>
+            </tr>
+            <tr>
+              <td>Salary:</td>
+              <td>None</td>
+            </tr>
+            <tr>
+              <td>Fee:</td>
+              <td>£9,100</td>
+            </tr>
+            <tr>
+              <td>Study type:</td>
+              <td>Full time (12 months)</td>
+            </tr>
+            <tr>
+              <td>Date course starts:</td>
+              <td>26 September 2018</td>
+            </tr>
+            <tr>
+              <td>Placement school preference:</td>
+              <td>St. Mary's Primary School<br>40 Masbro Rd, Hammersmith, London W14 0LT</td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+    </details>
+    <h3 class="govuk-heading-m">Contents</h3>
+    <ol class="application-section-list">
+      <li>
+        <a href="personal-details.html">Personal details</a>
+      </li>
+      <li>
+        <a href="contact-details.html">Contact details</a>
+      </li>
+      <li>
+        <a href="ukstatus.html">UK status</a>
+      </li>
+      <li>
+        <a href="education.html">Education</a>
+      </li>
+      <li>
+        <a href="work-history.html">Work history</a>
+      </li>
+      <li>
+        <a href="experience-motivation.html">Experience and motivation</a>
+      </li>
+    </ol>
+
+  </div>
+</div>
+
+<div class="govuk-form-group margin-top-50">
+  <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+    <label class="govuk-label bold-label">
+      How would you prefer us to contact you?
+    </label>
+    <div class="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="nationality-1" name="nationality" type="checkbox" value="british">
+        <label class="govuk-label govuk-checkboxes__label" for="nationality-1">
+        Phone
+      </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox" value="irish">
+        <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
+        Email
+      </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="nationality-3" name="nationality" type="checkbox" value="other">
+        <label class="govuk-label govuk-checkboxes__label" for="nationality-3">
+        Post
+      </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <a href="#" class="govuk-button">Submit application</a>
+  </div>
+</div>
+{% endblock %}

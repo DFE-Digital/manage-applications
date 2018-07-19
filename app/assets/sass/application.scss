@@ -218,3 +218,57 @@ $govuk-global-styles: true;
   padding-left: 20px;
   padding-right: 10px;
 }
+.summaryTable td{
+  vertical-align: top;
+  border-bottom: 1px #cccccc solid;
+  padding: 10px 0px 10px 0px;
+}
+.summaryTable td:first-child{
+  width: 30%;
+  font-weight: bold;
+}
+.summaryTable td:nth-child(2){
+  width:50%;
+}
+.application-section-list{
+  padding-left: 20px;
+}
+.application-section-list li{
+  padding:15px 0px 15px 0px;
+  border-bottom: 1px solid #999999;
+}
+.application-section-list li:first-child{
+  border-top: 1px solid #999999;
+}
+
+.actions-section{
+  margin-top:50px;
+}
+.address-box{
+  width:200px;
+}
+.secondary-button{
+  background: #005ea5 !important;
+  margin-top:20px;
+}
+.change-postcode{
+  padding-bottom: 20px;
+}
+.change-postcode a{
+  padding-left: 20px;
+}
+.bold-label{
+  font-weight: bold;
+}
+.subject-module{
+  margin-bottom: 20px;
+}
+.margin-top-50{
+  margin-top:20px;
+}
+.form-sub-section{
+  margin-top:100px;
+}
+.form-secondary-section{
+  margin-top:60px;
+}

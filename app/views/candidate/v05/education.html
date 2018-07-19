@@ -1,0 +1,775 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Home - Manage ITT applications
+{% endblock %}
+
+{% block content %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+    beta
+  </strong>
+  <span class="govuk-phase-banner__text">
+    This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+  </span>
+</p>
+</div>
+<a href="#" class="govuk-back-link" onclick="window.history.back();">Back</a>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Education
+    </h1>
+    <h3 class="govuk-heading-s">To be eligible for teacher training, you need a:</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>UK degree (or international equivalent)</li>
+      <li>GCSE in Maths, grade 4 (previously grade C)</li>
+      <li>GCSE in English, grade 4 (previously grade C)</li>
+    </ul>
+    <p>To teach at primary school, you also need a minimum grade 4 GCSE in science. You can learn more about eligibility at <a href="https://getintoteaching.education.gov.uk/eligibility-for-teacher-training" target="_blank">Get into Teaching</a>.
+    </p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          I don’t have GCSEs in maths and English
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p>You can also be accepted onto a course if you have older qualifications like O levels or international qualifications equivalent to GCSEs.
+        </p>
+        <p>
+          If you don’t have the right GCSE or its equivalent yet, you can still apply. Your training provider can help you get the right qualification in time for your course.
+        </p>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <label class="govuk-label bold-label">
+              Is there anything you’d like to tell us about missing GCSE qualifications?
+            </label>
+            <div class="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="criminal-conviction-yes" name="criminal-conviction" type="radio" value="criminal-conviction-yes" onclick="criminalConviction(this);">
+                <label class="govuk-label govuk-radios__label" for="criminal-conviction-yes">
+                  Yes
+                </label>
+                <div id="criminal-conviction-details" style="display:none;" class="govuk-inset-text">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="reason">
+                      Please give details
+                    </label>
+                    <textarea class="govuk-textarea" id="criminal-conviction-details" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="criminal-conviction-no" name="criminal-conviction" type="radio" value="criminal-conviction-no" onclick="criminalConviction(this);">
+                <label class="govuk-label govuk-radios__label" for="criminal-conviction-no">
+                  No
+                </label>
+              </div>
+
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          I studied for my qualifications outside the UK
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p>If you studied for your degree or GCSE equivalents overseas, have you checked your qualifications are recognised in the UK?
+        </p>
+        <p>
+          If not, please <a href="https://www.naric.org.uk/naric/Individuals/Default.aspx" target="_blank">visit UK NARIC</a> for help validating your qualifications. You’ll need a <a href="https://www.naric.org.uk/naric/Individuals/Compare%20Qualifications/Statement%20of%20Comparability.aspx" target="_blank">statement of comparability</a> to show to your training provider.
+        </p>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          I haven't completed my degree
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p>If you are still studying, give us your predicted grade and date of graduation.
+          If there's another reason why you didn't complete your degree, your training provider may be able to help.
+        </p>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="more-detail">
+            Please give details
+          </label>
+
+          <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+        </div>
+      </div>
+    </details>
+    <h3 class="govuk-heading-m form-sub-section">UK degree details</h3>
+    <p>Start by giving us your degree for the subject you’d like to teach. You’ll then have the option to add other degrees.</p>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="uk-degree-type">
+        Type
+      </label>
+      <span id="uk-degree-type-hint" class="govuk-hint">
+        For example, BA, BSc, Masters, Phd, or other, please specify
+      </span>
+      <input class="govuk-input" id="uk-degree-type" name="uk-degree-type" type="text" aria-describedby="uk-degree-type">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="uk-degree-subject">
+        Subject of degree
+      </label>
+      <input class="govuk-input" id="uk-degree-subject" name="uk-degree-subject" type="text" aria-describedby="uk-degree-subject">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="uk-degree-institution">
+        Institution where you studied
+      </label>
+      <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="uk-degree-institution">
+        Class of degree
+      </label>
+      <span class="govuk-hint">For example, 2.1</span>
+      <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="uk-degree-year">
+        Year qualification was awarded
+      </label>
+      <input class="govuk-input address-box" id="uk-degree-year" name="uk-degree-year" type="text" aria-describedby="uk-degree-year">
+    </div>
+
+    <h3 class="govuk-heading-s">Degree course modules </h3>
+    <p>
+      Give details of your course content to help your training provider understand the range of subjects you could teach.
+    </p>
+    <input class="govuk-input subject-module"  type="text" aria-describedby="subject-module">
+    <input class="govuk-input subject-module"  type="text" aria-describedby="subject-module">
+    <input class="govuk-input subject-module"  type="text" aria-describedby="subject-module">
+    <a href="#" class="govuk-button secondary-button">Add another </a>
+    <div class="govuk-form-group form-secondary-section">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Add another degree (optional)
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="uk-degree-type">
+              Type
+            </label>
+            <span id="uk-degree-type-hint" class="govuk-hint">
+              For example, BA, BSc, Masters, Phd, or other, please specify
+            </span>
+            <input class="govuk-input" id="uk-degree-type" name="uk-degree-type" type="text" aria-describedby="uk-degree-type">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="uk-degree-subject">
+              Subject of degree
+            </label>
+            <input class="govuk-input" id="uk-degree-subject" name="uk-degree-subject" type="text" aria-describedby="uk-degree-subject">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="uk-degree-institution">
+              Institution where you studied
+            </label>
+            <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="uk-degree-institution">
+              Class of degree
+            </label>
+            <span class="govuk-hint">For example, 2.1</span>
+            <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="uk-degree-year">
+              Year qualification was awarded
+            </label>
+            <input class="govuk-input address-box" id="uk-degree-year" name="uk-degree-year" type="text" aria-describedby="uk-degree-year">
+          </div>
+          <a href="#" class="govuk-button secondary-button">Add another </a>
+        </div>
+      </details>
+    </div>
+
+    <div class="govuk-form-group form-secondary-section">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            International degree details
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>
+            Start by giving us your degree for the subject you’d like to teach. You’ll then have the option to add other degrees.
+          </p>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="uk-degree-type">
+              Type of degree
+            </label>
+            <input class="govuk-input" id="uk-degree-type" name="uk-degree-type" type="text" aria-describedby="uk-degree-type">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="uk-degree-subject">
+              Subject of degree
+            </label>
+            <input class="govuk-input" id="uk-degree-subject" name="uk-degree-subject" type="text" aria-describedby="uk-degree-subject">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="uk-degree-institution">
+              Institution where you studied
+            </label>
+            <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="uk-degree-institution">
+              Class of degree
+            </label>
+            <span class="govuk-hint">For example, 2.1</span>
+            <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="uk-degree-year">
+              Year qualification was awarded
+            </label>
+            <input class="govuk-input address-box" id="uk-degree-year" name="uk-degree-year" type="text" aria-describedby="uk-degree-year">
+          </div>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <label class="govuk-label">
+                Have you applied to <a href="https://www.naric.org.uk/naric/Individuals/Default.aspx">UK NARIC</a> to validate this qualification?
+              </label>
+              <div class="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="naric-yes" name="naric" type="radio" value="naric-yes" onclick="naricDetails(this,'naric-details')">
+                  <label class="govuk-label govuk-radios__label" for="naric-yes" >
+                    Yes
+                  </label>
+                  <div id="naric-details" class="govuk-form-group govuk-inset-text" style="display:none;">
+                    <label class="govuk-label" for="naric-details-text">
+                      Please enter the UK comparison grade from your statement of comparability
+                    </label>
+                    <textarea class="govuk-textarea" id="naric-details-text" name="naric-details-text" rows="5" aria-describedby="mnaric-details-text"></textarea>
+                  </div>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="naric-no" name="naric" type="radio" value="naric-no" onclick="naricDetails(this,'naric-details')">
+                  <label class="govuk-label govuk-radios__label" for="naric-no">
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="govuk-form-group">
+            <h3 class="govuk-heading-s">Degree course modules </h3>
+            <p>
+              Give details of your course structure and content to help your training provider understand the range of subjects you could teach.
+            </p>
+            <input class="govuk-input subject-module"  type="text" aria-describedby="subject-module">
+            <input class="govuk-input subject-module"  type="text" aria-describedby="subject-module">
+            <input class="govuk-input subject-module"  type="text" aria-describedby="subject-module">
+            <a href="#" class="govuk-button secondary-button">Add another </a>
+        </div>
+
+        <div class="govuk-form-group form-secondary-section">
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Add another degree (optional)
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="uk-degree-type">
+                  Type
+                </label>
+                <span id="uk-degree-type-hint" class="govuk-hint">
+                  For example, BA, BSc, Masters, Phd, or other, please specify
+                </span>
+                <input class="govuk-input" id="uk-degree-type" name="uk-degree-type" type="text" aria-describedby="uk-degree-type">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="uk-degree-subject">
+                  Subject of degree
+                </label>
+                <input class="govuk-input" id="uk-degree-subject" name="uk-degree-subject" type="text" aria-describedby="uk-degree-subject">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="uk-degree-institution">
+                  Institution where you studied
+                </label>
+                <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="uk-degree-institution">
+                  Class of degree
+                </label>
+                <span class="govuk-hint">For example, 2.1</span>
+                <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="uk-degree-year">
+                  Year qualification was awarded
+                </label>
+                <input class="govuk-input address-box" id="uk-degree-year" name="uk-degree-year" type="text" aria-describedby="uk-degree-year">
+              </div>
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                  <label class="govuk-label">
+                    Have you applied to <a href="https://www.naric.org.uk/naric/Individuals/Default.aspx">UK NARIC</a> to validate this qualification?
+                  </label>
+                  <div class="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="naric-yes" name="naric" type="radio" value="naric-yes" onclick="naricDetails(this,'naric-details-other')">
+                      <label class="govuk-label govuk-radios__label" for="naric-yes" >
+                        Yes
+                      </label>
+                      <div id="naric-details-other" class="govuk-form-group govuk-inset-text" style="display:none;">
+                        <label class="govuk-label" for="naric-details-text">
+                          Please enter the UK comparison grade from your statement of comparability
+                        </label>
+                        <textarea class="govuk-textarea" id="naric-details-text" name="naric-details-text" rows="5" aria-describedby="mnaric-details-text"></textarea>
+                      </div>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="naric-no" name="naric" type="radio" value="naric-no" onclick="naricDetails(this,'naric-details-other')">
+                      <label class="govuk-label govuk-radios__label" for="naric-no">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+
+              <a href="#" class="govuk-button secondary-button">Add another</a>
+            </div>
+          </details>
+        </div>
+
+        </div>
+      </details>
+    </div>
+
+    <h3 class="govuk-heading-m form-sub-section">Maths GCSE or equivalent details</h3>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="maths-gcse-type">
+        Type
+      </label>
+      <span id="maths-gcse-hint" class="govuk-hint">
+        GCSE, O level, or other, please specify
+      </span>
+      <input class="govuk-input" id="maths-gcse-type" name="maths-gcse-type" type="text" aria-describedby="maths-gcse-type">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="maths-gcse-institute">
+        Institution where you studied
+      </label>
+      <input class="govuk-input" id="maths-gcse-institute" name="maths-gcse-institute" type="text" aria-describedby="maths-gcse-institute">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="maths-gcse-grade">
+        Grade
+      </label>
+      <input class="govuk-input" id="maths-gcse-grade" name="maths-gcse-grade" type="text" aria-describedby="maths-gcse-grade">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="maths-gcse-year">
+        Year
+      </label>
+      <input class="govuk-input address-box" id="maths-gcse-year" name="maths-gcse-year" type="text" aria-describedby="maths-gcse-year">
+    </div>
+
+    <h3 class="govuk-heading-m form-sub-section">English GCSE or equivalent details</h3>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="english-gcse-type">
+        Type
+      </label>
+      <span id="maths-gcse-hint" class="govuk-hint">
+        GCSE, O level, or other, please specify
+      </span>
+      <input class="govuk-input" id="english-gcse-type" name="english-gcse-type" type="text" aria-describedby="english-gcse-type">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="english-gcse-institute">
+        Institution where you studied
+      </label>
+      <input class="govuk-input" id="english-gcse-institute" name="english-gcse-institute" type="text" aria-describedby="english-gcse-institute">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="english-gcse-grade">
+        Grade
+      </label>
+      <input class="govuk-input" id="english-gcse-grade" name="english-gcse-grade" type="text" aria-describedby="english-gcse-grade">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="english-gcse-year">
+        Year
+      </label>
+      <input class="govuk-input address-box" id="english-gcse-year" name="english-gcse-year" type="text" aria-describedby="english-gcse-year">
+    </div>
+
+    <h3 class="govuk-heading-m form-sub-section">Science GCSE or equivalent details (for primary applicants only) </h3>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-type">
+        Type
+      </label>
+      <span id="science-gcse-hint" class="govuk-hint">
+        GCSE, O level, or other, please specify
+      </span>
+      <input class="govuk-input" id="english-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-institute">
+        Institution where you studied
+      </label>
+      <input class="govuk-input" id="science-gcse-institute" name="science-gcse-institute" type="text" aria-describedby="science-gcse-institute">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-grade">
+        Grade
+      </label>
+      <input class="govuk-input" id="science-gcse-grade" name="science-gcse-grade" type="text" aria-describedby="science-gcse-grade">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-year">
+        Year
+      </label>
+      <input class="govuk-input address-box" id="science-gcse-year" name="science-gcse-year" type="text" aria-describedby="science-gcse-year">
+    </div>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          International Maths, English and Science qualification details
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <h3 class="govuk-heading-m">Maths</h3>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="maths-gcse-type">
+            Type of qualification
+          </label>
+          <input class="govuk-input" id="maths-gcse-type" name="maths-gcse-type" type="text" aria-describedby="maths-gcse-type">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="maths-gcse-institute">
+            Institution where you studied
+          </label>
+          <input class="govuk-input" id="maths-gcse-institute" name="maths-gcse-institute" type="text" aria-describedby="maths-gcse-institute">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="maths-gcse-grade">
+            Grade
+          </label>
+          <input class="govuk-input" id="maths-gcse-grade" name="maths-gcse-grade" type="text" aria-describedby="maths-gcse-grade">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="maths-gcse-year">
+            Year
+          </label>
+          <input class="govuk-input address-box" id="maths-gcse-year" name="maths-gcse-year" type="text" aria-describedby="maths-gcse-year">
+        </div>
+
+        <h3 class="govuk-heading-m form-sub-section">English</h3>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="english-gcse-type">
+            Type of qualification
+          </label>
+          <input class="govuk-input" id="english-gcse-type" name="english-gcse-type" type="text" aria-describedby="english-gcse-type">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="english-gcse-institute">
+            Institution where you studied
+          </label>
+          <input class="govuk-input" id="english-gcse-institute" name="english-gcse-institute" type="text" aria-describedby="english-gcse-institute">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="english-gcse-grade">
+            Grade
+          </label>
+          <input class="govuk-input" id="english-gcse-grade" name="english-gcse-grade" type="text" aria-describedby="english-gcse-grade">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="english-gcse-year">
+            Year
+          </label>
+          <input class="govuk-input address-box" id="english-gcse-year" name="english-gcse-year" type="text" aria-describedby="english-gcse-year">
+        </div>
+
+        <h3 class="govuk-heading-m form-sub-section">Science (for primary applicants only) </h3>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="science-gcse-type">
+            Type of qualification
+          </label>
+          <input class="govuk-input" id="english-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="science-gcse-institute">
+            Institution where you studied
+          </label>
+          <input class="govuk-input" id="science-gcse-institute" name="science-gcse-institute" type="text" aria-describedby="science-gcse-institute">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="science-gcse-grade">
+            Grade
+          </label>
+          <input class="govuk-input" id="science-gcse-grade" name="science-gcse-grade" type="text" aria-describedby="science-gcse-grade">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="science-gcse-year">
+            Year
+          </label>
+          <input class="govuk-input address-box" id="science-gcse-year" name="science-gcse-year" type="text" aria-describedby="science-gcse-year">
+        </div>
+      </div>
+    </details>
+    <h2 class="govuk-heading-m form-sub-section">Add other relevant qualifications</h2>
+    <p>
+      Enter your remaining GCSEs, A levels, and any practical, vocational or arts-based qualifications. You can also give details of international qualifications.
+    </p>
+    <h3 class="govuk-heading-s">GCSEs or equivalent</h3>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-type">
+        Type
+      </label>
+      <span class="govuk-hint">
+        GCSE, O level or other, please specify
+      </span>
+      <input class="govuk-input" id="english-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-type">
+        Subject
+      </label>
+      <input class="govuk-input" id="english-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-institute">
+        Institution where you studied
+      </label>
+      <input class="govuk-input" id="science-gcse-institute" name="science-gcse-institute" type="text" aria-describedby="science-gcse-institute">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-grade">
+        Grade
+      </label>
+      <input class="govuk-input" id="science-gcse-grade" name="science-gcse-grade" type="text" aria-describedby="science-gcse-grade">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-year">
+        Year
+      </label>
+      <input class="govuk-input address-box" id="science-gcse-year" name="science-gcse-year" type="text" aria-describedby="science-gcse-year">
+    </div>
+    <a href="#" class="govuk-button secondary-button">Add another</a>
+
+    <h3 class="govuk-heading-s form-secondary-section">A levels or equivalent</h3>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-type">
+        Type
+      </label>
+      <span class="govuk-hint">
+        A level or other, please specify
+      </span>
+      <input class="govuk-input" id="english-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-type">
+        Subject
+      </label>
+      <input class="govuk-input" id="english-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-institute">
+        Institution where you studied
+      </label>
+      <input class="govuk-input" id="science-gcse-institute" name="science-gcse-institute" type="text" aria-describedby="science-gcse-institute">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-grade">
+        Grade
+      </label>
+      <input class="govuk-input" id="science-gcse-grade" name="science-gcse-grade" type="text" aria-describedby="science-gcse-grade">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-year">
+        Year
+      </label>
+      <input class="govuk-input address-box" id="science-gcse-year" name="science-gcse-year" type="text" aria-describedby="science-gcse-year">
+    </div>
+    <a href="#" class="govuk-button secondary-button">Add another</a>
+
+
+    <h3 class="govuk-heading-s form-secondary-section">Arts, vocational or practical</h3>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-type">
+        Type
+      </label>
+      <span class="govuk-hint">
+        Foundation, BTECs, NVQs, City and Guilds, apprenticeships, musical grades, other, please specify
+      </span>
+      <input class="govuk-input" id="english-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-type">
+        Subject
+      </label>
+      <input class="govuk-input" id="english-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-institute">
+        Institution where you studied
+      </label>
+      <input class="govuk-input" id="science-gcse-institute" name="science-gcse-institute" type="text" aria-describedby="science-gcse-institute">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-grade">
+        Grade
+      </label>
+      <input class="govuk-input" id="science-gcse-grade" name="science-gcse-grade" type="text" aria-describedby="science-gcse-grade">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="science-gcse-year">
+        Year
+      </label>
+      <input class="govuk-input address-box" id="science-gcse-year" name="science-gcse-year" type="text" aria-describedby="science-gcse-year">
+    </div>
+    <a href="#" class="govuk-button secondary-button">Add another</a>
+
+    <div class="govuk-form-group form-sub-section">
+      <fieldset class="govuk-fieldset">
+        <label class="govuk-label bold-label">
+          Is there anything else you’d like to tell us about your qualifications?
+        </label>
+        <div class="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="education-details-yes" name="education-details" type="radio" value="education-details-yes" onclick="educationDetails(this);">
+            <label class="govuk-label govuk-radios__label" for="education-details-yes">
+              Yes
+            </label>
+            <div id="education-details" style="display:none;" class="govuk-inset-text">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="reason">
+                  Please give details
+                </label>
+                <textarea class="govuk-textarea" id="education-details-text" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="education-details-no" name="education-details" type="radio" value="education-details-no" onclick="educationDetails(this);">
+            <label class="govuk-label govuk-radios__label" for="education-details-no">
+              No
+            </label>
+          </div>
+
+        </div>
+      </fieldset>
+    </div>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row actions-section">
+  <div class="govuk-grid-column-two-thirds">
+    <a href="index.html" class="govuk-button">Save and continue</a>
+  </br>
+  <a href="index.html">Cancel</a>
+</div>
+</div>
+<script type="text/javascript">
+function naricDetails(naricCheckBox,section)
+{
+  naric_details = document.getElementById(section);
+  if(naricCheckBox.value == "naric-yes" && naricCheckBox.checked == true)
+    naric_details.style.display = "block";
+  else
+    naric_details.style.display = "none";
+}
+function criminalConviction(criminalCheckBox)
+{
+  convictionDetails = document.getElementById("criminal-conviction-details");
+  if(criminalCheckBox.value=="criminal-conviction-yes" && criminalCheckBox.checked == true)
+  {
+    convictionDetails.style.display="block";
+  }
+  else
+  {
+    convictionDetails.style.display="none";
+  }
+}
+
+function educationDetails(educationCheckBox)
+{
+  convictionDetails = document.getElementById("education-details");
+  if(educationCheckBox.value=="education-details-yes" && educationCheckBox.checked == true)
+  {
+    convictionDetails.style.display="block";
+  }
+  else
+  {
+    convictionDetails.style.display="none";
+  }
+}
+</script>
+{% endblock %}

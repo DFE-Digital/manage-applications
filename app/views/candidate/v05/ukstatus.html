@@ -1,0 +1,187 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Home - Manage ITT applications
+{% endblock %}
+
+{% block content %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+    beta
+  </strong>
+  <span class="govuk-phase-banner__text">
+    This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+  </span>
+</p>
+</div>
+<a href="#" class="govuk-back-link" onclick="window.history.back();">Back</a>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      UK status
+    </h1>
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+        <label class="govuk-label bold-label" for="phone-number">
+          What is your nationality?
+        </label>
+        <span id="nationality-hint" class="govuk-hint">
+          Select all options that are relevant for you
+        </span>
+        <div class="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="nationality-1" name="nationality" type="checkbox" value="british">
+            <label class="govuk-label govuk-checkboxes__label" for="nationality-1">
+              British (including English, Scottish, Welsh or from Northern Ireland)
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox" value="irish">
+            <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
+              European Union citizen
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="nationality-3" name="nationality" type="checkbox" value="other" onclick="showOtherNationality(this);">
+            <label class="govuk-label govuk-checkboxes__label" for="nationality-3">
+              Citizen of a non-UK or non-EU country
+            </label>
+            <div id="nationality" style="display:none;" class="govuk-inset-text">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="reason">
+                  Please enter your country of nationality
+                </label>
+                <input class="govuk-input address-box" id="last-name" name="last-name" type="text" aria-describedby="Email of the applicant">
+              </div>
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+                  <label class="govuk-label ">
+                    Do you need a sponsorship visa?
+                  </label>
+                  <div class="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="need-visa" name="visa" type="radio" value="need-visa">
+                      <label class="govuk-label govuk-radios__label" for="need-visa">
+                        Yes
+                      </label>
+                    </div>
+
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="dont-need-visa" name="visa" type="radio" value="dont-need-visa">
+                      <label class="govuk-label govuk-radios__label" for="dont-need-visa">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div>
+                <a href="https://www.gov.uk/browse/visas-immigration" target="_blank">More on visas</a>
+              </br>
+              <a href="https://www.gov.uk/tier-4-general-visa" target="_blank">More on applying for a student visa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <label class="govuk-label bold-label">
+        Do you have the right to access public funds?
+      </label>
+      <span class="govuk-hint">
+        (For example, <a href="https://getintoteaching.education.gov.uk/funding-and-salary/overview" target="_blank">student loans and bursaries</a>)
+      </br>
+      <a href="https://www.gov.uk/government/publications/public-funds--2/public-funds" target="_blank">More on who can access public funds</a>
+    </span>
+    <div class="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="public-funds-yes" name="public-funds" type="radio" value="public-funds-yes">
+        <label class="govuk-label govuk-radios__label" for="public-funds-yes">
+          Yes
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="public-funds-no" name="public-funds" type="radio" value="public-funds-no">
+        <label class="govuk-label govuk-radios__label" for="public-funds-no">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <label class="govuk-label bold-label">
+      Do you have any live criminal convictions?
+    </label>
+    <span class="govuk-hint">
+      <a href="https://www.gov.uk/exoffenders-and-employment" target="_blank">More on live criminal convictions</a>
+    </span>
+    <div class="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="criminal-conviction-yes" name="criminal-conviction" type="radio" value="criminal-conviction-yes" onclick="criminalConviction(this);">
+        <label class="govuk-label govuk-radios__label" for="criminal-conviction-yes">
+          Yes
+        </label>
+        <div id="criminal-conviction-details" style="display:none;" class="govuk-inset-text">
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="reason">
+              Please give details
+            </label>
+            <textarea class="govuk-textarea" id="criminal-conviction-details" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="criminal-conviction-no" name="criminal-conviction" type="radio" value="criminal-conviction-no" onclick="criminalConviction(this);">
+        <label class="govuk-label govuk-radios__label" for="criminal-conviction-no">
+          No
+        </label>
+      </div>
+
+    </div>
+  </fieldset>
+</div>
+
+</div>
+</div>
+
+<div class="govuk-grid-row actions-section">
+  <div class="govuk-grid-column-two-thirds">
+    <a href="index.html" class="govuk-button">Save and continue</a>
+  </br>
+  <a href="index.html">Cancel</a>
+</div>
+</div>
+
+<script type="text/javascript">
+function criminalConviction(criminalCheckBox)
+{
+  convictionDetails = document.getElementById("criminal-conviction-details");
+  if(criminalCheckBox.value=="criminal-conviction-yes" && criminalCheckBox.checked == true)
+  {
+    convictionDetails.style.display="block";
+  }
+  else
+  {
+    convictionDetails.style.display="none";
+  }
+}
+
+function showOtherNationality(nationalityCheckBox)
+{
+  nationalityDetails = document.getElementById("nationality");
+  if(nationalityCheckBox.checked == true)
+    nationalityDetails.style.display="block";
+  else
+    nationalityDetails.style.display="none";
+
+}
+</script>
+{% endblock %}

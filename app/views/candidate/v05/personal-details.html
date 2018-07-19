@@ -1,0 +1,94 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Home - Manage ITT applications
+{% endblock %}
+
+{% block content %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
+    beta
+  </strong>
+  <span class="govuk-phase-banner__text">
+    This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+  </span>
+</p>
+</div>
+<a href="#" class="govuk-back-link" onclick="window.history.back();">Back</a>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Personal details
+    </h1>
+    <div class="govuk-form-group">
+      <label class="govuk-label bold-label" for="title">
+        Title
+      </label>
+      <span class="govuk-hint">
+        How would you like us to address you? For example, Mr, Mrs, Miss, Ms, Mx
+      </span>
+      <input class="govuk-input address-box" id="title" name="first-name" type="text" aria-describedby="First name of the applicant">
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label bold-label" for="first-name">
+        First name
+      </label>
+      <input class="govuk-input" id="first-name" name="first-name" type="text" aria-describedby="First name of the applicant">
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label bold-label" for="last-name">
+        Last name
+      </label>
+      <input class="govuk-input" id="last-name" name="last-name" type="text" aria-describedby="Last name of the applicant">
+    </div>
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="dob-hint" role="group">
+        <label class="govuk-label bold-label" for="dob">
+          What is your date of birth?
+        </label>
+        <span id="dob-hint" class="govuk-hint">
+          For example, 31 3 1980
+        </span>
+        <div class="govuk-date-input" id="dob">
+
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="dob-day">
+                Day
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2 undefined" id="dob-day" name="dob-day" type="number" pattern="[0-9]*">
+            </div>
+          </div>
+
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="dob-month">
+                Month
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2 undefined" id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
+            </div>
+          </div>
+
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="dob-year">
+                Year
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-4 undefined" id="dob-year" name="dob-year" type="number" pattern="[0-9]*">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+
+<div class="govuk-grid-row actions-section">
+  <div class="govuk-grid-column-two-thirds">
+    <a href="index.html" class="govuk-button">Save and continue</a>
+    </br>
+    <a href="index.html">Cancel</a>
+  </div>
+</div>
+{% endblock %}
