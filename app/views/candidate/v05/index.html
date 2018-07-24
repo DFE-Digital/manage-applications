@@ -1,4 +1,3 @@
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -72,21 +71,27 @@ Home - Manage ITT applications
     <ol class="application-section-list">
       <li>
         <a href="personal-details.html">Personal details</a>
+        <span id="personal-details" style="display:none;"> COMPLETED</span>
       </li>
       <li>
         <a href="contact-details.html">Contact details</a>
+        <span id="contact-details" style="display:none;"> COMPLETED</span>
       </li>
       <li>
         <a href="ukstatus.html">UK status</a>
+        <span id="ukstatus-details" style="display:none;"> COMPLETED</span>
       </li>
       <li>
         <a href="education.html">Education</a>
+        <span id="education-details" style="display:none;"> COMPLETED</span>
       </li>
       <li>
         <a href="work-history.html">Work history</a>
+        <span id="work-history-details" style="display:none;"> COMPLETED</span>
       </li>
       <li>
         <a href="experience-motivation.html">Experience and motivation</a>
+        <span id="experience-details" style="display:none;"> COMPLETED</span>
       </li>
     </ol>
 
@@ -126,4 +131,8 @@ Home - Manage ITT applications
     <a href="#" class="govuk-button">Submit application</a>
   </div>
 </div>
+
+<script type="text/javascript">
+
+</script>
 {% endblock %}

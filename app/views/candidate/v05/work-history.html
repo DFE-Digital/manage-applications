@@ -1,4 +1,3 @@
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -72,14 +71,14 @@ Home - Manage ITT applications
       <div class="govuk-form-group">
         <div class="govuk-radios govuk-radios--inline">
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="changed-name-1" name="changed-name" type="radio" value="yes">
-            <label class="govuk-label govuk-radios__label" for="changed-name-1">
+            <input class="govuk-radios__input" id="fullTime" name="fullTime" type="radio" value="yes">
+            <label class="govuk-label govuk-radios__label" for="fullTime">
               Full time
             </label>
           </div>
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="changed-name-2" name="changed-name" type="radio" value="no">
-            <label class="govuk-label govuk-radios__label" for="changed-name-2">
+            <input class="govuk-radios__input" id="partTime" name="partTime" type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="partTime">
               Part time
             </label>
           </div>
@@ -97,19 +96,19 @@ Home - Manage ITT applications
           <div class="govuk-date-input" id="dob">
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="dob-month">
+                <label class="govuk-label govuk-date-input__label" for="startMonth">
                   Month
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2 undefined" id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2 undefined" id="startMonth" name="dstartMonth" type="number" pattern="[0-9]*">
               </div>
             </div>
 
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="dob-year">
+                <label class="govuk-label govuk-date-input__label" for="startYear">
                   Year
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4 undefined" id="dob-year" name="dob-year" type="number" pattern="[0-9]*">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4 undefined" id="startYear" name="startYear" type="number" pattern="[0-9]*">
               </div>
             </div>
           </div>
@@ -127,19 +126,19 @@ Home - Manage ITT applications
           <div class="govuk-date-input" id="dob">
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="dob-month">
+                <label class="govuk-label govuk-date-input__label" for="endMonth">
                   Month
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2 undefined" id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2 undefined" id="endMonth" name="endMonth" type="number" pattern="[0-9]*">
               </div>
             </div>
 
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="dob-year">
+                <label class="govuk-label govuk-date-input__label" for="endYear">
                   Year
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4 undefined" id="dob-year" name="dob-year" type="number" pattern="[0-9]*">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4 undefined" id="endYear" name="endYear" type="number" pattern="[0-9]*">
               </div>
             </div>
           </div>
@@ -147,12 +146,38 @@ Home - Manage ITT applications
       </div>
 
       <div class="govuk-form-group">
-        <a href="#" class="govuk-button secondary-button">
+        <button class="govuk-button secondary-button" onclick="addWork()">
           Add another
-        </a>
+        </button>
       </div>
 
-      <div class="govuk-form-group">
+      <div class="govuk-form-group" id="workSection" style="display:none;">
+        <table class="govuk-table" id="workTable">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">
+              Job title or study activity
+            </th>
+            <th class="govuk-table__header" scope="col">
+              Organisation or place of study
+            </th>
+            <th class="govuk-table__header" scope="col">
+              Job type
+            </th>
+            <th class="govuk-table__header" scope="col">
+              Start date
+            </th>
+            <th class="govuk-table__header" scope="col">
+              End date
+            </th>
+          </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+          </tbody>
+        </table>
+      </div>
+
+      <div class="govuk-form-group form-sub-section">
         <fieldset class="govuk-fieldset">
           <label class="govuk-label bold-label">
             Is there anything else you’d like to tell us about your work history?
@@ -198,6 +223,62 @@ Home - Manage ITT applications
 </div>
 
 <script type="text/javascript">
+nameSuffix = 1;
+function addWork()
+{
+  var wtable = document.getElementById("workTable");
+  var row = wtable.insertRow(-1);
+  var titleCell = row.insertCell(0);
+  var orgCell = row.insertCell(1);
+  var typeCell = row.insertCell(2);
+  var startCell = row.insertCell(3);
+  var endCell = row.insertCell(4);
+  var wSection = document.getElementById("workSection");
+
+  row.className = "govuk-table__row";
+
+  if(wSection.style.display == "none")
+    wSection.style.display = "block";
+
+  row.className = "govuk-table__row";
+
+  titleCell.className = "govuk-table__cell";
+  orgCell.className = "govuk-table__cell";
+  typeCell.className = "govuk-table__cell";
+  startCell.className = "govuk-table__cell";
+  endCell.className = "govuk-table__cell";
+
+  titleCell.innerHTML = document.getElementById('jobTitle').value;
+  document.getElementById('jobTitle').value = '';
+  document.getElementById('jobTitle').name = "jobTitle" + nameSuffix;
+  orgCell.innerHTML = document.getElementById('organisation').value;
+  document.getElementById('organisation').value = '';
+  document.getElementById('organisation').name = "organisation" + nameSuffix;
+  if(document.getElementById('fullTime').checked == true)
+  {
+    typeCell.innerHTML = "Full time";
+    document.getElementById('fullTime').checked = false;
+    document.getElementById('fullTime').name = "fullTime" + nameSuffix;
+  }
+  else if(document.getElementById('partTime').checked == true)
+  {
+    typeCell.innerHTML = "Part time";
+    document.getElementById('partTime').checked = false;
+    document.getElementById('partTime').name = "partTime" + nameSuffix;
+  }
+  startCell.innerHTML = document.getElementById('startMonth').value + ', ' + document.getElementById('startYear').value;
+  document.getElementById('startMonth').value = '';
+  document.getElementById('startMonth').name = "startMonth" + nameSuffix;
+  document.getElementById('startYear').value = '';
+  document.getElementById('startYear').name = "startYear" + nameSuffix;
+  endCell.innerHTML = document.getElementById('endMonth').value + ', ' + document.getElementById('endYear').value;
+  document.getElementById('endMonth').value = '';
+  document.getElementById('endMonth').name = "endMonth" + nameSuffix;
+  document.getElementById('endYear').value = '';
+  document.getElementById('endYear').name = "endYear" + nameSuffix;
+  nameSuffix++;
+}
+
 function showWorkDetails(workDetailsRadio)
 {
   workDetailsSection = document.getElementById('workDetails');
