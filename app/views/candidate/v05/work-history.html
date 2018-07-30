@@ -20,11 +20,8 @@ Home - Manage ITT applications
     <h1 class="govuk-heading-xl">
       Work history
     </h1>
-    {% for label,value in data %}
-      <p>{{ label }}</br>{{value}}</p>
-    {% endfor %}
 
-    <form action="index.html" id="work_details_form">
+    <form action="work-history.html" id="work_details_form">
     <p>
       Please give us a complete breakdown of the last 5 years of your academic and professional life. Training providers use this information to:
     </p>
@@ -57,6 +54,16 @@ Home - Manage ITT applications
     <p>
       Start with your most recent position, and work backwards. If you did more than one job in the same period, list them both, one after the other.
     </p>
+
+    <input type="hidden" name="numberOfWork"
+    {% if data['numberOfWork'] %}
+      value = "{{data['numberOfWork']}}"
+    {% else %}
+      value = "0"
+    {% endif %}
+    id="numberOfWork">
+
+
     <div class="govuk-form-group">
       <label class="govuk-label bold-label" for="jobTitle">
         Job title or study activity
@@ -104,7 +111,7 @@ Home - Manage ITT applications
                 <label class="govuk-label govuk-date-input__label" for="startMonth">
                   Month
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2 undefined" id="startMonth" name="dstartMonth" type="number" pattern="[0-9]*">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2 undefined" id="startMonth" name="startMonth" type="number" pattern="[0-9]*">
               </div>
             </div>
 
@@ -151,12 +158,18 @@ Home - Manage ITT applications
       </div>
 
       <div class="govuk-form-group">
-        <a class="govuk-button secondary-button" href="javascript:addWork()">
+        <a class="govuk-button secondary-button" href="javascript: submitForm()">
           Add another
         </a>
       </div>
 
-      <div class="govuk-form-group" id="workSection" style="display:none;">
+      <div class="govuk-form-group" id="workSection"
+      {% if data['jobTitle1']%}
+        style="display:block;"
+      {% else %}
+        style="display:none;"
+        {% endif %}
+      >
         <table class="govuk-table" id="workTable">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -178,6 +191,23 @@ Home - Manage ITT applications
           </tr>
           </thead>
           <tbody class="govuk-table__body">
+                {% for i in range(0, data['numberOfWork']) -%}
+                  {% if data['jobTitle'+loop.index] %}
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">{{data['jobTitle'+loop.index]}}</td>
+                      <td class="govuk-table__cell">{{data['organisation'+loop.index]}}</td>
+                      <td class="govuk-table__cell">
+                        {% if checked('fulltime'+loop.index,'yes') %}
+                          Full time
+                        {% else %}
+                          Part time
+                        {% endif %}
+                      </td>
+                      <td class="govuk-table__cell">{{data['startMonth'+loop.index]}},{{data['startYear'+loop.index]}}</td>
+                      <td class="govuk-table__cell">{{data['endMonth'+loop.index]}},{{data['endYear'+loop.index]}}</td>
+                    </tr>
+                  {%  endif %}
+                {%- endfor %}
           </tbody>
         </table>
       </div>
@@ -222,14 +252,13 @@ Home - Manage ITT applications
 
 <div class="govuk-grid-row actions-section">
   <div class="govuk-grid-column-two-thirds">
-    <a href="javascript: submitForm()" class="govuk-button">Save and continue</a>
+    <a href="index.html" class="govuk-button">Save and continue</a>
   </br>
   <a href="index.html">Cancel</a>
 </div>
 </div>
 
 <script type="text/javascript">
-nameSuffix = 1;
 
 window.onload = function(){
   var http = new XMLHttpRequest();
@@ -243,11 +272,21 @@ window.onload = function(){
     sessionStorage.setItem('workDetails','0');
     sessionStorage.setItem('ambitionsDetails','0');
   }
+  var nameSuffix = parseInt(document.getElementById('numberOfWork').value) + 1;
+  document.getElementById('jobTitle').name = "jobTitle" + nameSuffix;
+  document.getElementById('organisation').name = "organisation" + nameSuffix;
+  document.getElementById('fullTime').name = "fulltime" + nameSuffix;
+  document.getElementById('partTime').name = "fulltime" + nameSuffix;
+  document.getElementById('startMonth').name = "startMonth" + nameSuffix;
+  document.getElementById('startYear').name = "startYear" + nameSuffix;
+  document.getElementById('endMonth').name = "endMonth" + nameSuffix;
+  document.getElementById('endYear').name = "endYear" + nameSuffix;
 }
 function submitForm()
 {
   console.log("Submitting the form");
   sessionStorage.setItem('workDetails','1');
+  document.getElementById('numberOfWork').value = parseInt(document.getElementById('numberOfWork').value) + 1 ;
   document.forms['work_details_form'].submit();
 }
 
@@ -262,6 +301,7 @@ function addWork()
   var startCell = row.insertCell(3);
   var endCell = row.insertCell(4);
   var wSection = document.getElementById("workSection");
+  var nameSuffix = document.getElementById('numberOfWork').value;
 
   row.className = "govuk-table__row";
 
@@ -304,7 +344,7 @@ function addWork()
   document.getElementById('endMonth').name = "endMonth" + nameSuffix;
   document.getElementById('endYear').value = '';
   document.getElementById('endYear').name = "endYear" + nameSuffix;
-  nameSuffix++;
+  document.getElementById('numberOfWork').value = parseInt(nameSuffix) + 1;
 }
 
 function showWorkDetails(workDetailsRadio)

@@ -20,7 +20,7 @@ Home - Manage ITT applications
     <h1 class="govuk-heading-xl">
       Education
     </h1>
-    <form action="index.html" id="education_details_form">
+    <form action="education.html" id="education_details_form">
     <h3 class="govuk-heading-s">To be eligible for teacher training, you need a:</h3>
     <ul class="govuk-list govuk-list--bullet">
       <li>UK degree (or international equivalent)</li>
@@ -52,12 +52,12 @@ Home - Manage ITT applications
                 <label class="govuk-label govuk-radios__label" for="missing-GCSE-yes">
                   Yes
                 </label>
-                <div id="missing-GCSE-details" style="display:none;" class="govuk-inset-text">
+                <div  id="missing-GCSE-details"  style="display:none;" class="govuk-inset-text">
                   <div class="govuk-form-group">
                     <label class="govuk-label" for="reason">
                       Please give details
                     </label>
-                    <textarea value="{{data['missingGCSE_details']}}" class="govuk-textarea" id="missingGCSE_details" name="missingGCSE_details" rows="5" aria-describedby="more-detail-hint"></textarea>
+                    <textarea class="govuk-textarea" id="missingGCSE_details" name="missingGCSE_details" rows="5" aria-describedby="more-detail-hint"> {{data['missingGCSE_details']}} </textarea>
                   </div>
                 </div>
               </div>
@@ -105,7 +105,7 @@ Home - Manage ITT applications
             Please give details
           </label>
 
-          <textarea value="{{data['degree-incomplete-detail']}}" class="govuk-textarea" id="degree-incomplete-detail" name="degree-incomplete-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+          <textarea  class="govuk-textarea" id="degree-incomplete-detail" name="degree-incomplete-detail" rows="5" aria-describedby="more-detail-hint"> {{data['degree-incomplete-detail']}}</textarea>
         </div>
       </div>
     </details>
@@ -152,6 +152,13 @@ Home - Manage ITT applications
     </div>
 
     <h3 class="govuk-heading-s">Degree course modules </h3>
+    <input type="hidden" name="number_uk_degree_modules" id="number_uk_degree_modules"
+    {%if data['number_uk_degree_modules']%}
+      value = {{data['number_uk_degree_modules']}}
+    {% else %}
+      value = "4"
+    {% endif %}
+    >
     <p>
       Give details of your course content to help your training provider understand the range of subjects you could teach.
     </p>
@@ -159,16 +166,28 @@ Home - Manage ITT applications
       <input value="{{data['uk-subject-module1']}}" class="govuk-input subject-module" name="uk-subject-module1" type="text" aria-describedby="subject-module">
       <input value="{{data['uk-subject-module2']}}" class="govuk-input subject-module" name="uk-subject-module2" type="text" aria-describedby="subject-module">
       <input value="{{data['uk-subject-module3']}}" class="govuk-input subject-module" name="uk-subject-module3" type="text" aria-describedby="subject-module">
+      {% if data['uk-subject-module4']%}
+        {% for i in range(4,data['number_uk_degree_modules']) -%}
+        <input value="{{data['uk-subject-module'+i]}}" class="govuk-input subject-module" name="uk-subject-module{{i}}" type="text" aria-describedby="subject-module">
+        {%- endfor %}
+      {% endif %}
     </div>
-    <a class="govuk-button secondary-button" href="javascript:addModules()" >Add another </a>
+    <a class="govuk-button secondary-button" href="javascript:addModules()" >Add </a>
     <div class="govuk-form-group form-secondary-section">
       <details class="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
-            Add another degree (optional)
+            Add degree (optional)
           </span>
         </summary>
         <div class="govuk-details__text">
+          <input type="hidden" name="number_uk_other_degree" id="number_uk_other_degree"
+          {%if data['number_uk_other_degree']%}
+            value = {{data['number_uk_other_degree']}}
+          {% else %}
+            value = "1"
+          {% endif %}
+          >
           <div class="govuk-form-group">
             <label class="govuk-label" for="uk-other-degree-type">
               Type
@@ -207,8 +226,14 @@ Home - Manage ITT applications
             </label>
             <input value="{{data['uk-other-degree-year']}}" class="govuk-input address-box" id="uk-other-degree-year" name="uk-other-degree-year" type="text" aria-describedby="uk-other-degree-year">
           </div>
-          <a  class="govuk-button secondary-button" href="javascript:addRow('otherDegreeDiv',['uk-other-degree-type','uk-other-degree-subject','uk-other-degree-institution','uk-other-degree-class','uk-other-degree-year'])">Add another</a>
-          <div class="govuk-form-group" id="otherDegreeDiv" style="display:none;">
+          <a  class="govuk-button secondary-button" href="javascript:addUKOtherDegree( )">Add</a>
+          <div class="govuk-form-group" id="otherDegreeDiv"
+          {% if data['number_uk_other_degree']  > 1 %}
+            style="display:block;"
+          {% else %}
+            style="display:none;"
+          {% endif %}
+          >
             <table class="govuk-table" id="otherDegreeDivTable">
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
@@ -230,6 +255,15 @@ Home - Manage ITT applications
               </tr>
               </thead>
               <tbody class="govuk-table__body">
+                {% for i in range(1,data['number_uk_other_degree']) -%}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">{{data['uk-other-degree-type'+i]}}</td>
+                    <td class="govuk-table__cell">{{data['uk-other-degree-subject'+i]}}</td>
+                    <td class="govuk-table__cell">{{data['uk-other-degree-institution'+i]}}</td>
+                    <td class="govuk-table__cell">{{data['uk-other-degree-class'+i]}}</td>
+                    <td class="govuk-table__cell">{{data['uk-other-degree-year'+i]}}</td>
+                  </tr>
+                {%- endfor %}
               </tbody>
             </table>
           </div>
@@ -300,7 +334,7 @@ Home - Manage ITT applications
                     <label class="govuk-label" for="naric-details-text">
                       Please enter the UK comparison grade from your statement of comparability
                     </label>
-                    <textarea class="govuk-textarea" id="naric-details-text" name="naric-details-text" rows="5" aria-describedby="mnaric-details-text"></textarea>
+                    <textarea class="govuk-textarea" id="naric-details-text" name="naric-details-text" rows="5" aria-describedby="mnaric-details-text">{{data['naric-details-text']}}</textarea>
                   </div>
                 </div>
                 <div class="govuk-radios__item">
@@ -320,14 +354,14 @@ Home - Manage ITT applications
             <input value="{{data['international-subject-module1']}}" class="govuk-input subject-module" name="international-subject-module1" type="text" aria-describedby="subject-module">
             <input value="{{data['international-subject-module1']}}" class="govuk-input subject-module" name="international-subject-module2" type="text" aria-describedby="subject-module">
             <input value="{{data['international-subject-module1']}}" class="govuk-input subject-module" name="international-subject-module3" type="text" aria-describedby="subject-module">
-            <a href="#" class="govuk-button secondary-button">Add another</a>
+            <a href="#" class="govuk-button secondary-button">Add</a>
         </div>
 
         <div class="govuk-form-group form-secondary-section">
           <details class="govuk-details">
             <summary class="govuk-details__summary">
               <span class="govuk-details__summary-text">
-                Add another degree (optional)
+                Add degree (optional)
               </span>
             </summary>
             <div class="govuk-details__text">
@@ -385,7 +419,7 @@ Home - Manage ITT applications
                         <label class="govuk-label" for="naric-details-text">
                           Please enter the UK comparison grade from your statement of comparability
                         </label>
-                        <textarea class="govuk-textarea" id="naric-details-text" name="naric-details-text" rows="5" aria-describedby="mnaric-details-text"></textarea>
+                        <textarea class="govuk-textarea" id="naric-details-text" name="naric-details-text" rows="5" aria-describedby="naric-details-text"> {{data['naric-details-text']}} </textarea>
                       </div>
                     </div>
                     <div class="govuk-radios__item">
@@ -398,7 +432,7 @@ Home - Manage ITT applications
                 </fieldset>
               </div>
 
-              <a href="#" class="govuk-button secondary-button">Add another</a>
+              <a href="#" class="govuk-button secondary-button">Add</a>
             </div>
           </details>
         </div>
@@ -598,11 +632,18 @@ Home - Manage ITT applications
         </div>
       </div>
     </details>
-    <h2 class="govuk-heading-m form-sub-section">Add other relevant qualifications</h2>
+    <h2 class="govuk-heading-l form-sub-section">Add other relevant qualifications</h2>
     <p>
       Enter your remaining GCSEs, A levels, and any practical, vocational or arts-based qualifications. You can also give details of international qualifications.
     </p>
-    <h3 class="govuk-heading-s">GCSEs or equivalent</h3>
+    <h3 class="govuk-heading-m form-sub-section">GCSEs or equivalent</h3>
+    <input type="hidden" name="numberOtherGCSE" id="numberOtherGCSE"
+    {% if data['numberOtherGCSE']%}
+      value = {{data['numberOtherGCSE']}}
+    {% else %}
+      value = "1"
+    {% endif %}
+    >
     <div class="govuk-form-group">
       <label class="govuk-label" for="other-GCSE-type">
         Type
@@ -640,8 +681,14 @@ Home - Manage ITT applications
       </label>
       <input value="{{data['other-GCSE-year']}}" class="govuk-input address-box" id="other-GCSE-year" name="other-GCSE-year" type="text" aria-describedby="other-GCSE-year">
     </div>
-    <a  class="govuk-button secondary-button" href="javascript:addRow('otherGCSEDiv',['other-GCSE-type','other-GCSE-subject','other-GCSE-institute','other-GCSE-grade', 'other-GCSE-year'])">Add another</a>
-    <div class="govuk-form-group" id="otherGCSEDiv" style="display:none;">
+    <a  class="govuk-button secondary-button" href="javascript:addOtherGCSE()">Add</a>
+    <div class="govuk-form-group" id="otherGCSEDiv"
+    {% if data['numberOtherGCSE'] > 1 %}
+      style = "display:block;"
+    {% else %}
+      style = "display:none;"
+    {% endif %}
+    >
       <table class="govuk-table" id="otherGCSEDivTable">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -663,51 +710,75 @@ Home - Manage ITT applications
         </tr>
         </thead>
         <tbody class="govuk-table__body">
+          {% for i in range(1,data['numberOtherGCSE']) -%}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"> {{ data['other-GCSE-type'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-GCSE-subject'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-GCSE-institute'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-GCSE-grade'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-GCSE-year'+i] }}</td>
+            </tr>
+          {%- endfor %}
         </tbody>
       </table>
     </div>
 
-    <h3 class="govuk-heading-s form-secondary-section">A levels or equivalent</h3>
+    <!-- A levels - start  -->
+
+    <h3 class="govuk-heading-m form-sub-section">A levels or equivalent</h3>
+    <input type="hidden" name="numberOtherALevels" id="numberOtherALevels"
+    {% if data['numberOtherALevels']%}
+      value = {{data['numberOtherALevels']}}
+    {% else %}
+      value = "1"
+    {% endif %}
+    >
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-alevel-type">
+      <label class="govuk-label" for="other-ALevels-type">
         Type
       </label>
       <span class="govuk-hint">
         A level or other, please specify
       </span>
-      <input class="govuk-input" id="other-alevel-type" name="other-alevel-type" type="text" aria-describedby="other-alevel-type" value="{{data['other-alevel-type']}}">
+      <input value="{{data['other-ALevels-type']}}" class="govuk-input" id="other-ALevels-type" name="other-ALevels-type" type="text" aria-describedby="other-ALevels-type">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-alevel-subject">
+      <label class="govuk-label" for="other-ALevels-subject">
         Subject
       </label>
-      <input class="govuk-input" id="other-alevel-subject" name="other-alevel-subject" type="text" aria-describedby="other-alevel-subject" value="{{data['other-alevel-subject']}}">
+      <input value="{{data['other-ALevels-subject']}}" class="govuk-input" id="other-ALevels-subject" name="other-ALevels-subject" type="text" aria-describedby="other-ALevels-subject">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-alevel-institute">
+      <label class="govuk-label" for="other-ALevels-institute">
         Institution where you studied
       </label>
-      <input class="govuk-input" id="other-alevel-institute" name="other-alevel-institute" type="text" aria-describedby="other-alevel-institute" value="{{data['other-alevel-institute']}}">
+      <input value="{{data['other-ALevels-institute']}}" class="govuk-input" id="other-ALevels-institute" name="other-ALevels-institute" type="text" aria-describedby="other-ALevels-institute">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-alevel-grade">
+      <label class="govuk-label" for="other-ALevels-grade">
         Grade
       </label>
-      <input class="govuk-input" id="other-alevel-grade" name="other-alevel-grade" type="text" aria-describedby="other-alevel-grade" value="{{data['other-alevel-grade']}}">
+      <input value="{{data['other-ALevels-grade']}}" class="govuk-input" id="other-ALevels-grade" name="other-ALevels-grade" type="text" aria-describedby="other-ALevels-grade">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-alevel-year">
+      <label class="govuk-label" for="other-ALevels-year">
         Year
       </label>
-      <input class="govuk-input address-box" id="other-alevel-year" name="other-alevel-year" type="text" aria-describedby="other-alevel-year" value="{{data['other-alevel-year']}}">
+      <input value="{{data['other-ALevels-year']}}" class="govuk-input address-box" id="other-ALevels-year" name="other-ALevels-year" type="text" aria-describedby="other-ALevels-year">
     </div>
-    <a  class="govuk-button secondary-button" href="javascript:addRow('otherALevelDiv',['other-alevel-type','other-alevel-subject','other-alevel-institute','other-alevel-grade', 'other-alevel-year'])">Add another</a>
-    <div class="govuk-form-group" id="otherALevelDiv" style="display:none;">
-      <table class="govuk-table" id="otherALevelDivTable">
+    <a  class="govuk-button secondary-button" href="javascript:addOtherALevels()">Add</a>
+    <div class="govuk-form-group" id="otherALevelsDiv"
+    {% if data['numberOtherALevels'] > 1 %}
+      style = "display:block;"
+    {% else %}
+      style = "display:none;"
+    {% endif %}
+    >
+      <table class="govuk-table" id="otherALevelsDivTable">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
           <th class="govuk-table__header" scope="col">
@@ -728,52 +799,78 @@ Home - Manage ITT applications
         </tr>
         </thead>
         <tbody class="govuk-table__body">
+          {% for i in range(1,data['numberOtherALevels']) -%}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"> {{ data['other-ALevels-type'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-ALevels-subject'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-ALevels-institute'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-ALevels-grade'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-ALevels-year'+i] }}</td>
+            </tr>
+          {%- endfor %}
         </tbody>
       </table>
     </div>
 
+    <!-- A levels - end  -->
 
-    <h3 class="govuk-heading-s form-secondary-section">Arts, vocational or practical</h3>
+
+    <!-- Arts, vocational or practical - start  -->
+
+    <h3 class="govuk-heading-m form-sub-section">Arts, vocational or practical</h3>
+    <input type="hidden" name="numberOtherOther" id="numberOtherOther"
+    {% if data['numberOtherOther']%}
+      value = {{data['numberOtherOther']}}
+    {% else %}
+      value = "1"
+    {% endif %}
+    >
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-type">
+      <label class="govuk-label" for="other-Other-type">
         Type
       </label>
       <span class="govuk-hint">
         Foundation, BTECs, NVQs, City and Guilds, apprenticeships, musical grades, other, please specify
       </span>
-      <input class="govuk-input" id="other-type" name="other-type" type="text" aria-describedby="other-type" value="{{data['other-type']}}">
+      <input value="{{data['other-Other-type']}}" class="govuk-input" id="other-Other-type" name="other-Other-type" type="text" aria-describedby="other-Other-type">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-subject">
+      <label class="govuk-label" for="other-Other-subject">
         Subject
       </label>
-      <input class="govuk-input" id="other-subject" name="other-subject" type="text" aria-describedby="other-subject" value="{{data['other-subject']}}">
+      <input value="{{data['other-Other-subject']}}" class="govuk-input" id="other-Other-subject" name="other-Other-subject" type="text" aria-describedby="other-Other-subject">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-institute">
+      <label class="govuk-label" for="other-Other-institute">
         Institution where you studied
       </label>
-      <input class="govuk-input" id="other-institute" name="other-institute" type="text" aria-describedby="other-institute" value="{{data['other-institute']}}">
+      <input value="{{data['other-Other-institute']}}" class="govuk-input" id="other-Other-institute" name="other-Other-institute" type="text" aria-describedby="other-Other-institute">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-grade">
+      <label class="govuk-label" for="other-Other-grade">
         Grade
       </label>
-      <input class="govuk-input" id="other-grade" name="other-grade" type="text" aria-describedby="other-grade" value="{{data['other-grade']}}">
+      <input value="{{data['other-Other-grade']}}" class="govuk-input" id="other-Other-grade" name="other-Other-grade" type="text" aria-describedby="other-Other-grade">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-year">
+      <label class="govuk-label" for="other-Other-year">
         Year
       </label>
-      <input class="govuk-input address-box" id="other-year" name="other-year" type="text" aria-describedby="other-year" value="{{data['other-year']}}">
+      <input value="{{data['other-Other-year']}}" class="govuk-input address-box" id="other-Other-year" name="other-Other-year" type="text" aria-describedby="other-Other-year">
     </div>
-    <a  class="govuk-button secondary-button" href="javascript:addRow('otherDiv',['other-type','other-subject','other-institute','other-grade', 'other-year'])">Add another</a>
-    <div class="govuk-form-group" id="otherDiv" style="display:none;">
-      <table class="govuk-table" id="otherDivTable">
+    <a  class="govuk-button secondary-button" href="javascript:addOtherOther()">Add</a>
+    <div class="govuk-form-group" id="otherOtherDiv"
+    {% if data['numberOtherOther']> 1 %}
+      style = "display:block;"
+    {% else %}
+      style = "display:none;"
+    {% endif %}
+    >
+      <table class="govuk-table" id="otherOtherDivTable">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
           <th class="govuk-table__header" scope="col">
@@ -794,9 +891,22 @@ Home - Manage ITT applications
         </tr>
         </thead>
         <tbody class="govuk-table__body">
+          {% for i in range(1,data['numberOtherOther']) -%}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"> {{ data['other-Other-type'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-Other-subject'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-Other-institute'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-Other-grade'+i] }}</td>
+              <td class="govuk-table__cell"> {{ data['other-Other-year'+i] }}</td>
+            </tr>
+          {%- endfor %}
         </tbody>
       </table>
     </div>
+
+    <!-- Arts, vocational or practical - end  -->
+
+
 
     <div class="govuk-form-group form-sub-section">
       <fieldset class="govuk-fieldset">
@@ -809,12 +919,19 @@ Home - Manage ITT applications
             <label class="govuk-label govuk-radios__label" for="education-details-yes">
               Yes
             </label>
-            <div id="education-details" style="display:none;" class="govuk-inset-text">
+            <div id="education-details" class="govuk-inset-text"
+            {% if checked('education-details','education-details-yes')%}
+              style="display:block;"
+            {% else %}
+              style="display:none;" 
+            {% endif %}
+
+            >
               <div class="govuk-form-group">
                 <label class="govuk-label" for="reason">
                   Please give details
                 </label>
-                <textarea class="govuk-textarea" id="education-details-text" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                <textarea class="govuk-textarea" id="education-details-text" name="education-details-text" rows="5" aria-describedby="more-detail-hint"> {{data['education-details-text']}} </textarea>
               </div>
             </div>
           </div>
@@ -855,6 +972,35 @@ window.onload = function(){
     sessionStorage.setItem('workDetails','0');
     sessionStorage.setItem('ambitionsDetails','0');
   }
+
+  var uk_degree_suffix = document.getElementById('number_uk_other_degree').value;
+  document.getElementById('uk-other-degree-type').name = 'uk-other-degree-type' + uk_degree_suffix;
+  document.getElementById('uk-other-degree-subject').name = 'uk-other-degree-subject' + uk_degree_suffix;
+  document.getElementById('uk-other-degree-institution').name = 'uk-other-degree-institution' + uk_degree_suffix;
+  document.getElementById('uk-other-degree-class').name = 'uk-other-degree-class' + uk_degree_suffix;
+  document.getElementById('uk-other-degree-year').name = 'uk-other-degree-year' + uk_degree_suffix;
+
+  var other_gcse_Suffix = document.getElementById('numberOtherGCSE').value;
+  document.getElementById('other-GCSE-type').name = 'other-GCSE-type' + other_gcse_Suffix;
+  document.getElementById('other-GCSE-subject').name = 'other-GCSE-subject' + other_gcse_Suffix;
+  document.getElementById('other-GCSE-institute').name = 'other-GCSE-institute' + other_gcse_Suffix;
+  document.getElementById('other-GCSE-grade').name = 'other-GCSE-grade' + other_gcse_Suffix;
+  document.getElementById('other-GCSE-year').name = 'other-GCSE-year' + other_gcse_Suffix;
+
+  var other_ALevels_Suffix = document.getElementById('numberOtherALevels').value;
+  document.getElementById('other-ALevels-type').name = 'other-ALevels-type' + other_ALevels_Suffix;
+  document.getElementById('other-ALevels-subject').name = 'other-ALevels-subject' + other_ALevels_Suffix;
+  document.getElementById('other-ALevels-institute').name = 'other-ALevels-institute' + other_ALevels_Suffix;
+  document.getElementById('other-ALevels-grade').name = 'other-ALevels-grade' + other_ALevels_Suffix;
+  document.getElementById('other-ALevels-year').name = 'other-ALevels-year' + other_ALevels_Suffix;
+
+  var other_Other_Suffix = document.getElementById('numberOtherOther').value;
+  document.getElementById('other-Other-type').name = 'other-Other-type' + other_Other_Suffix;
+  document.getElementById('other-Other-subject').name = 'other-Other-subject' + other_Other_Suffix;
+  document.getElementById('other-Other-institute').name = 'other-Other-institute' + other_Other_Suffix;
+  document.getElementById('other-Other-grade').name = 'other-Other-grade' + other_Other_Suffix;
+  document.getElementById('other-Other-year').name = 'other-Other-year' + other_Other_Suffix;
+
 }
 function submitForm()
 {
@@ -862,6 +1008,51 @@ function submitForm()
   document.forms['education_details_form'].submit();
 }
 
+function addOtherALevels()
+{
+  document.getElementById('numberOtherALevels').value = parseInt(document.getElementById('numberOtherALevels').value) + 1;
+  submitForm();
+}
+
+function addOtherOther()
+{
+  document.getElementById('numberOtherOther').value = parseInt(document.getElementById('numberOtherOther').value) + 1;
+  submitForm();
+}
+
+function addOtherGCSE()
+{
+  document.getElementById('numberOtherGCSE').value = parseInt(document.getElementById('numberOtherGCSE').value) + 1;
+  submitForm();
+}
+
+function addUKOtherDegree()
+{
+  document.getElementById('number_uk_other_degree').value = parseInt(document.getElementById('number_uk_other_degree').value) + 1;
+  console.log(document.getElementById('number_uk_other_degree').value);
+  submitForm();
+  /*
+  var index;
+  var div = document.getElementById(divID);
+  var table = document.getElementById(divID+"Table");
+  var row = table.insertRow(-1);
+
+  if(div.style.display == "none")
+    div.style.display = "block";
+
+  row.className = "govuk-table__row"
+
+  for(index=0;index<fields.length;index++)
+  {
+    var cell = row.insertCell(index);
+    cell.className = "govuk-table__cell";
+    cell.innerHTML = document.getElementById(fields[index]).value;
+    document.getElementById(fields[index]).name = fields[index]+ukOtherDegreeSuffix;
+    document.getElementById(fields[index]).value = '';
+  }
+  ukOtherDegreeSuffix++;
+  */
+}
 
 function addRow(divID, fields)
 {
@@ -925,10 +1116,10 @@ function addModules()
 {
   var div_of_modules = document.getElementById('listOfMudules');
   var div = document.createElement("div");
-  div.innerHTML = "<input class=\"govuk-input subject-module\" name=\"subject-module"+moduleSuffix+"\" type=\"text\" aria-describedby=\"subject-module\">";
-
+  var moduleSuffix = parseInt(document.getElementById('number_uk_degree_modules').value);
+  div.innerHTML = "<input class=\"govuk-input subject-module\" name=\"uk-subject-module"+moduleSuffix+"\" type=\"text\" aria-describedby=\"subject-module\">";
   div_of_modules.appendChild(div);
-  moduleSuffix++;
+  document.getElementById('number_uk_degree_modules').value = moduleSuffix + 1;
 }
 </script>
 {% endblock %}
