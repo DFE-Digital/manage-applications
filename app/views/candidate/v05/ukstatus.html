@@ -21,6 +21,7 @@ Home - Manage ITT applications
     <h1 class="govuk-heading-xl">
       UK status
     </h1>
+    <form action="index.html" id="ukstatus_details_form">
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
         <label class="govuk-label bold-label" for="phone-number">
@@ -31,19 +32,19 @@ Home - Manage ITT applications
         </span>
         <div class="govuk-checkboxes">
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="nationality-1" name="nationality" type="checkbox" value="british">
+            <input {{ checked('nationality1','british') }} class="govuk-checkboxes__input" id="nationality-1" name="nationality1" type="checkbox" value="british">
             <label class="govuk-label govuk-checkboxes__label" for="nationality-1">
               British (including English, Scottish, Welsh or from Northern Ireland)
             </label>
           </div>
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox" value="irish">
+            <input {{ checked('nationality2','eu') }} class="govuk-checkboxes__input" id="nationality-2" name="nationality2" type="checkbox" value="eu">
             <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
               European Union citizen
             </label>
           </div>
           <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="nationality-3" name="nationality" type="checkbox" value="other" onclick="showOtherNationality(this);">
+            <input {{ checked('nationality3','other') }} class="govuk-checkboxes__input" id="nationality-3" name="nationality3" type="checkbox" value="other" onclick="showOtherNationality(this);">
             <label class="govuk-label govuk-checkboxes__label" for="nationality-3">
               Citizen of a non-UK or non-EU country
             </label>
@@ -52,7 +53,7 @@ Home - Manage ITT applications
                 <label class="govuk-label" for="reason">
                   Please enter your country of nationality
                 </label>
-                <input class="govuk-input address-box" id="last-name" name="last-name" type="text" aria-describedby="Email of the applicant">
+                <input {{ data['foreignCountry'] }} class="govuk-input address-box" id="foreignCountry" name="foreignCountry" type="text" aria-describedby="foreignCountry">
               </div>
               <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
@@ -61,14 +62,14 @@ Home - Manage ITT applications
                   </label>
                   <div class="govuk-radios">
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="need-visa" name="visa" type="radio" value="need-visa">
+                      <input {{ checked('visa','need-visa') }} class="govuk-radios__input" id="need-visa" name="visa" type="radio" value="need-visa">
                       <label class="govuk-label govuk-radios__label" for="need-visa">
                         Yes
                       </label>
                     </div>
 
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="dont-need-visa" name="visa" type="radio" value="dont-need-visa">
+                      <input {{ checked('visa','dont-need-visa') }} class="govuk-radios__input" id="dont-need-visa" name="visa" type="radio" value="dont-need-visa">
                       <label class="govuk-label govuk-radios__label" for="dont-need-visa">
                         No
                       </label>
@@ -99,13 +100,13 @@ Home - Manage ITT applications
     </span>
     <div class="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="public-funds-yes" name="public-funds" type="radio" value="public-funds-yes">
+        <input {{ checked('public-funds','public-funds-yes') }} class="govuk-radios__input" id="public-funds-yes" name="public-funds" type="radio" value="public-funds-yes">
         <label class="govuk-label govuk-radios__label" for="public-funds-yes">
           Yes
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="public-funds-no" name="public-funds" type="radio" value="public-funds-no">
+        <input {{ checked('public-funds','public-funds-no') }} class="govuk-radios__input" id="public-funds-no" name="public-funds" type="radio" value="public-funds-no">
         <label class="govuk-label govuk-radios__label" for="public-funds-no">
           No
         </label>
@@ -124,7 +125,7 @@ Home - Manage ITT applications
     </span>
     <div class="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="criminal-conviction-yes" name="criminal-conviction" type="radio" value="criminal-conviction-yes" onclick="criminalConviction(this);">
+        <input {{ checked('criminal-conviction','criminal-conviction-yes') }} class="govuk-radios__input" id="criminal-conviction-yes" name="criminal-conviction" type="radio" value="criminal-conviction-yes" onclick="criminalConviction(this);">
         <label class="govuk-label govuk-radios__label" for="criminal-conviction-yes">
           Yes
         </label>
@@ -133,13 +134,13 @@ Home - Manage ITT applications
             <label class="govuk-label" for="reason">
               Please give details
             </label>
-            <textarea class="govuk-textarea" id="criminal-conviction-details" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+            <textarea {{data['criminal-conviction-details']}} class="govuk-textarea" id="criminal-conviction-details" name="criminal-conviction-details" rows="5" aria-describedby="more-detail-hint"></textarea>
           </div>
         </div>
       </div>
 
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="criminal-conviction-no" name="criminal-conviction" type="radio" value="criminal-conviction-no" onclick="criminalConviction(this);">
+        <input {{ checked('criminal-conviction','criminal-conviction-no') }} class="govuk-radios__input" id="criminal-conviction-no" name="criminal-conviction" type="radio" value="criminal-conviction-no" onclick="criminalConviction(this);">
         <label class="govuk-label govuk-radios__label" for="criminal-conviction-no">
           No
         </label>
@@ -148,19 +149,55 @@ Home - Manage ITT applications
     </div>
   </fieldset>
 </div>
-
+</form>
 </div>
 </div>
 
 <div class="govuk-grid-row actions-section">
   <div class="govuk-grid-column-two-thirds">
-    <a href="index.html" class="govuk-button">Save and continue</a>
+    <a href="javascript: submitForm()" class="govuk-button">Save and continue</a>
   </br>
   <a href="index.html">Cancel</a>
 </div>
 </div>
 
 <script type="text/javascript">
+window.onload = function(){
+   var criminalCheckBox =  document.getElementById('criminal-conviction-yes');
+   var convictionDetails = document.getElementById('criminal-conviction-details')
+   if(criminalCheckBox.value=="criminal-conviction-yes" && criminalCheckBox.checked == true)
+   {
+     convictionDetails.style.display="block";
+   }
+   else
+   {
+     convictionDetails.style.display="none";
+   }
+
+   var nationalityCheckBox = document.getElementById('nationality-3');
+   nationalityDetails = document.getElementById("nationality");
+   if(nationalityCheckBox.checked == true)
+     nationalityDetails.style.display="block";
+   else
+     nationalityDetails.style.display="none";
+
+
+  if (!sessionStorage.sectionFlags)
+  {
+    sessionStorage.setItem('sectionFlags','1');
+    sessionStorage.setItem('personalDetails','0');
+    sessionStorage.setItem('contactDetails','0');
+    sessionStorage.setItem('ukStatusDetails','0');
+    sessionStorage.setItem('educationDetails','0');
+    sessionStorage.setItem('workDetails','0');
+    sessionStorage.setItem('ambitionsDetails','0');
+  }
+}
+function submitForm()
+{
+  sessionStorage.setItem('ukStatusDetails','1');
+  document.forms['ukstatus_details_form'].submit();
+}
 function criminalConviction(criminalCheckBox)
 {
   convictionDetails = document.getElementById("criminal-conviction-details");

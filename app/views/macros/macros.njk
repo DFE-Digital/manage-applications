@@ -27,3 +27,11 @@
   <a href="searchResults.html" class="search-icon"> <img src="/images/search-icon.png" alt="O"> </a>
 </div>
 {% endmacro %}
+
+{%macro showAllData()%}
+<p>Dumping all data</p>
+<p>
+{{ data | dump }}
+</p>
+
+{% endmacro %}

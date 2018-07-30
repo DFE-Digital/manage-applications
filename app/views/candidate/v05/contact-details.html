@@ -21,6 +21,7 @@ Home - Manage ITT applications
     <h1 class="govuk-heading-xl">
       Contact details
     </h1>
+    <form action="index.html" id="contact_details_form">
     <div class="govuk-form-group">
       <label class="govuk-label bold-label" for="phone-number">
         Phone number
@@ -28,13 +29,13 @@ Home - Manage ITT applications
       <span class="govuk-hint">
         (For non-UK numbers, include the country code)
       </span>
-      <input class="govuk-input address-box" id="phone-number" name="phone-number" type="text" aria-describedby="phone number of the applicant">
+      <input class="govuk-input address-box" id="phone-number" name="phone-number" type="text" aria-describedby="phone number of the applicant" value="{{ data['phone-number'] }}">
     </div>
     <div class="govuk-form-group">
-      <label class="govuk-label bold-label" for="last-name">
+      <label class="govuk-label bold-label" for="email">
         Email
       </label>
-      <input class="govuk-input" id="last-name" name="last-name" type="text" aria-describedby="Email of the applicant">
+      <input class="govuk-input" id="email" name="email" type="text" aria-describedby="Email of the applicant" value="{{ data['email'] }}">
     </div>
 
     <div class="govuk-form-group" id="postcode-input" style="display:block;">
@@ -43,7 +44,7 @@ Home - Manage ITT applications
       </label>
       <span class="govuk-hint">Enter your postcode to search UK addresses</span>
       <div>
-        <input class="govuk-input address-box" id="address" name="address" type="text" aria-describedby="address of the applicant"></br>
+        <input class="govuk-input address-box" id="address" name="address" type="text" aria-describedby="address of the applicant" value="{{ data['address'] }}"></br>
         <a href="#" class="govuk-button secondary-button" onclick="selectAddress();">Find address</a>
         <details class="govuk-details">
           <summary class="govuk-details__summary">
@@ -112,19 +113,36 @@ Home - Manage ITT applications
         <a href="#">I can't find my address</a>
       </div>
     </div>
-
+  </form>
   </div>
 </div>
 
 <div class="govuk-grid-row actions-section">
   <div class="govuk-grid-column-two-thirds">
-    <a href="index.html" class="govuk-button">Save and continue</a>
+    <a href="javascript: submitForm()" class="govuk-button">Save and continue</a>
     </br>
     <a href="#">Cancel</a>
   </div>
 </div>
 
 <script type="text/javascript">
+window.onload = function(){
+  if (!sessionStorage.sectionFlags)
+  {
+    sessionStorage.setItem('sectionFlags','1');
+    sessionStorage.setItem('personalDetails','0');
+    sessionStorage.setItem('contactDetails','0');
+    sessionStorage.setItem('ukStatusDetails','0');
+    sessionStorage.setItem('educationDetails','0');
+    sessionStorage.setItem('workDetails','0');
+    sessionStorage.setItem('ambitionsDetails','0');
+  }
+}
+function submitForm()
+{
+  sessionStorage.setItem('contactDetails','1');
+  document.forms['contact_details_form'].submit();
+}
 function selectAddress(){
   postcode = document.getElementById("postcode-input");
   select_address = document.getElementById("address-selector");

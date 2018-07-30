@@ -67,39 +67,46 @@ Home - Manage ITT applications
         </div>
       </div>
     </details>
-    <h3 class="govuk-heading-m">Contents</h3>
-    <ol class="application-section-list">
-      <li>
-        <a href="personal-details.html">Personal details</a>
-        <span id="section0" style="display:none;"> COMPLETED</span>
-      </li>
-      <li>
-        <a href="contact-details.html">Contact details</a>
-        <span id="section1" style="display:none;"> COMPLETED</span>
-      </li>
-      <li>
-        <a href="ukstatus.html">UK status</a>
-        <span id="section2" style="display:none;"> COMPLETED</span>
-      </li>
-      <li>
-        <a href="education.html">Education</a>
-        <span id="section3" style="display:none;"> COMPLETED</span>
-      </li>
-      <li>
-        <a href="work-history.html">Work history</a>
-        <span id="section4" style="display:none;"> COMPLETED</span>
-      </li>
-      <li>
-        <a href="experience-motivation.html">Experience and motivation</a>
-        <span id="section5" style="display:none;"> COMPLETED</span>
-      </li>
-    </ol>
+
   </div>
 </div>
 
+<h3 class="govuk-heading-m"> Personal details</h3>
+<p class="bold-label">First name</br><span class="preview-data">John<span></p>
+<p class="bold-label">Last name</br><span class="preview-data">Doe<span></p>
+
+
+<div class="govuk-form-group margin-top-50">
+  <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+    <label class="govuk-label bold-label">
+      How would you prefer us to contact you?
+    </label>
+    <div class="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="nationality-1" name="nationality" type="checkbox" value="british">
+        <label class="govuk-label govuk-checkboxes__label" for="nationality-1">
+          Phone
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox" value="irish">
+        <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
+          Email
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="nationality-3" name="nationality" type="checkbox" value="other">
+        <label class="govuk-label govuk-checkboxes__label" for="nationality-3">
+          Post
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds application-section">
-    <a href="preview.html" class="govuk-button">Preview application</a>
+  <div class="govuk-grid-column-two-thirds">
+    <a href="#" class="govuk-button">Submit application</a>
   </div>
 </div>
 

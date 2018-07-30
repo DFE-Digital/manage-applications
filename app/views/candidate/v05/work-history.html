@@ -16,10 +16,15 @@ Home - Manage ITT applications
 </div>
 <a href="#" class="govuk-back-link" onclick="window.history.back();">Back</a>
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">
       Work history
     </h1>
+    {% for label,value in data %}
+      <p>{{ label }}</br>{{value}}</p>
+    {% endfor %}
+
+    <form action="index.html" id="work_details_form">
     <p>
       Please give us a complete breakdown of the last 5 years of your academic and professional life. Training providers use this information to:
     </p>
@@ -56,7 +61,7 @@ Home - Manage ITT applications
       <label class="govuk-label bold-label" for="jobTitle">
         Job title or study activity
       </label>
-      <input class="govuk-input" id="jobTitle" name="jobTitle" type="text" aria-describedby="job title">
+      <input value="{{data['jobTitle']}}" class="govuk-input" id="jobTitle" name="jobTitle" type="text" aria-describedby="job title">
     </div>
     <div class="govuk-form-group">
       <label class="govuk-label bold-label" for="organisation">
@@ -146,9 +151,9 @@ Home - Manage ITT applications
       </div>
 
       <div class="govuk-form-group">
-        <button class="govuk-button secondary-button" onclick="addWork()">
+        <a class="govuk-button secondary-button" href="javascript:addWork()">
           Add another
-        </button>
+        </a>
       </div>
 
       <div class="govuk-form-group" id="workSection" style="display:none;">
@@ -211,12 +216,13 @@ Home - Manage ITT applications
       </div>
 
     </div>
+  </form>
   </div>
 </div>
 
 <div class="govuk-grid-row actions-section">
   <div class="govuk-grid-column-two-thirds">
-    <a href="index.html" class="govuk-button">Save and continue</a>
+    <a href="javascript: submitForm()" class="govuk-button">Save and continue</a>
   </br>
   <a href="index.html">Cancel</a>
 </div>
@@ -224,8 +230,30 @@ Home - Manage ITT applications
 
 <script type="text/javascript">
 nameSuffix = 1;
+
+window.onload = function(){
+  var http = new XMLHttpRequest();
+  if (!sessionStorage.sectionFlags)
+  {
+    sessionStorage.setItem('sectionFlags','1');
+    sessionStorage.setItem('personalDetails','0');
+    sessionStorage.setItem('contactDetails','0');
+    sessionStorage.setItem('ukStatusDetails','0');
+    sessionStorage.setItem('educationDetails','0');
+    sessionStorage.setItem('workDetails','0');
+    sessionStorage.setItem('ambitionsDetails','0');
+  }
+}
+function submitForm()
+{
+  console.log("Submitting the form");
+  sessionStorage.setItem('workDetails','1');
+  document.forms['work_details_form'].submit();
+}
+
 function addWork()
 {
+  console.log('adding');
   var wtable = document.getElementById("workTable");
   var row = wtable.insertRow(-1);
   var titleCell = row.insertCell(0);

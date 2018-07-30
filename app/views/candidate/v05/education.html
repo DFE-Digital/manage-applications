@@ -20,6 +20,7 @@ Home - Manage ITT applications
     <h1 class="govuk-heading-xl">
       Education
     </h1>
+    <form action="index.html" id="education_details_form">
     <h3 class="govuk-heading-s">To be eligible for teacher training, you need a:</h3>
     <ul class="govuk-list govuk-list--bullet">
       <li>UK degree (or international equivalent)</li>
@@ -47,23 +48,23 @@ Home - Manage ITT applications
             </label>
             <div class="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="criminal-conviction-yes" name="criminal-conviction" type="radio" value="criminal-conviction-yes" onclick="criminalConviction(this);">
-                <label class="govuk-label govuk-radios__label" for="criminal-conviction-yes">
+                <input {{checked('missingGCSE','missing-GCSE-yes')}} class="govuk-radios__input" id="missing-GCSE-yes" name="missingGCSE" type="radio" value="missing-GCSE-yes" onclick="missing_GCSE(this);">
+                <label class="govuk-label govuk-radios__label" for="missing-GCSE-yes">
                   Yes
                 </label>
-                <div id="criminal-conviction-details" style="display:none;" class="govuk-inset-text">
+                <div id="missing-GCSE-details" style="display:none;" class="govuk-inset-text">
                   <div class="govuk-form-group">
                     <label class="govuk-label" for="reason">
                       Please give details
                     </label>
-                    <textarea class="govuk-textarea" id="criminal-conviction-details" name="criminal-conviction-details" rows="5" aria-describedby="more-detail-hint"></textarea>
+                    <textarea value="{{data['missingGCSE_details']}}" class="govuk-textarea" id="missingGCSE_details" name="missingGCSE_details" rows="5" aria-describedby="more-detail-hint"></textarea>
                   </div>
                 </div>
               </div>
 
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="criminal-conviction-no" name="criminal-conviction" type="radio" value="criminal-conviction-no" onclick="criminalConviction(this);">
-                <label class="govuk-label govuk-radios__label" for="criminal-conviction-no">
+                <input {{checked('missingGCSE','missing-GCSE-no')}} class="govuk-radios__input" id="missing-GCSE-no" name="missingGCSE" type="radio" value="missing-GCSE-no" onclick="missing_GCSE(this);">
+                <label class="govuk-label govuk-radios__label" for="missing-GCSE-no">
                   No
                 </label>
               </div>
@@ -104,7 +105,7 @@ Home - Manage ITT applications
             Please give details
           </label>
 
-          <textarea class="govuk-textarea" id="incomplete-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+          <textarea value="{{data['degree-incomplete-detail']}}" class="govuk-textarea" id="degree-incomplete-detail" name="degree-incomplete-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
         </div>
       </div>
     </details>
@@ -118,21 +119,21 @@ Home - Manage ITT applications
       <span id="uk-degree-type-hint" class="govuk-hint">
         For example, BA, BSc, Masters, Phd, or other, please specify
       </span>
-      <input class="govuk-input address-box" id="uk-degree-type" name="uk-degree-type" type="text" aria-describedby="uk-degree-type">
+      <input value="{{data['uk-degree-type']}}" class="govuk-input address-box" id="uk-degree-type" name="uk-degree-type" type="text" aria-describedby="uk-degree-type">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="uk-degree-subject">
         Subject of degree
       </label>
-      <input class="govuk-input" id="uk-degree-subject" name="uk-degree-subject" type="text" aria-describedby="uk-degree-subject">
+      <input  value="{{data['uk-degree-subject']}}" class="govuk-input" id="uk-degree-subject" name="uk-degree-subject" type="text" aria-describedby="uk-degree-subject">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="uk-degree-institution">
         Institution where you studied
       </label>
-      <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+      <input value="{{data['uk-degree-institution']}}" class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
     </div>
 
     <div class="govuk-form-group">
@@ -140,14 +141,14 @@ Home - Manage ITT applications
         Class of degree
       </label>
       <span class="govuk-hint">For example, 2.1</span>
-      <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+      <input value="{{data['uk-degree-class']}}" class="govuk-input" id="uk-degree-class" name="uk-degree-class" type="text" aria-describedby="uk-degree-institution">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="uk-degree-year">
         Year qualification was awarded
       </label>
-      <input class="govuk-input address-box" id="uk-degree-year" name="uk-degree-year" type="text" aria-describedby="uk-degree-year">
+      <input value="{{data['uk-degree-year']}}" class="govuk-input address-box" id="uk-degree-year" name="uk-degree-year" type="text" aria-describedby="uk-degree-year">
     </div>
 
     <h3 class="govuk-heading-s">Degree course modules </h3>
@@ -155,11 +156,11 @@ Home - Manage ITT applications
       Give details of your course content to help your training provider understand the range of subjects you could teach.
     </p>
     <div id="listOfMudules">
-      <input class="govuk-input subject-module" name="subject-module1" type="text" aria-describedby="subject-module">
-      <input class="govuk-input subject-module" name="subject-module2" type="text" aria-describedby="subject-module">
-      <input class="govuk-input subject-module" name="subject-module3" type="text" aria-describedby="subject-module">
+      <input value="{{data['uk-subject-module1']}}" class="govuk-input subject-module" name="uk-subject-module1" type="text" aria-describedby="subject-module">
+      <input value="{{data['uk-subject-module2']}}" class="govuk-input subject-module" name="uk-subject-module2" type="text" aria-describedby="subject-module">
+      <input value="{{data['uk-subject-module3']}}" class="govuk-input subject-module" name="uk-subject-module3" type="text" aria-describedby="subject-module">
     </div>
-    <button class="govuk-button secondary-button" onclick="addModules()" >Add another </button>
+    <a class="govuk-button secondary-button" href="javascript:addModules()" >Add another </a>
     <div class="govuk-form-group form-secondary-section">
       <details class="govuk-details">
         <summary class="govuk-details__summary">
@@ -172,24 +173,24 @@ Home - Manage ITT applications
             <label class="govuk-label" for="uk-other-degree-type">
               Type
             </label>
-            <span id="uk-degree-type-hint" class="govuk-hint">
+            <span id="uk-other-degree-type-hint" class="govuk-hint">
               For example, BA, BSc, Masters, Phd, or other, please specify
             </span>
-            <input class="govuk-input" id="uk-other-degree-type" name="uk-other-degree-type" type="text" aria-describedby="uk-other-degree-type">
+            <input value="{{data['uk-other-degree-type']}}" class="govuk-input" id="uk-other-degree-type" name="uk-other-degree-type" type="text" aria-describedby="uk-other-degree-type">
           </div>
 
           <div class="govuk-form-group">
             <label class="govuk-label" for="uk-other-degree-subject">
               Subject of degree
             </label>
-            <input class="govuk-input" id="uk-other-degree-subject" name="uk-other-degree-subject" type="text" aria-describedby="uk-other-degree-subject">
+            <input value="{{data['uk-other-degree-subject']}}" class="govuk-input" id="uk-other-degree-subject" name="uk-other-degree-subject" type="text" aria-describedby="uk-other-degree-subject">
           </div>
 
           <div class="govuk-form-group">
             <label class="govuk-label" for="uk-other-degree-institution">
               Institution where you studied
             </label>
-            <input class="govuk-input" id="uk-other-degree-institution" name="uk-other-degree-institution" type="text" aria-describedby="uk-other-degree-institution">
+            <input value="{{data['uk-other-degree-institution']}}" class="govuk-input" id="uk-other-degree-institution" name="uk-other-degree-institution" type="text" aria-describedby="uk-other-degree-institution">
           </div>
 
           <div class="govuk-form-group">
@@ -197,16 +198,16 @@ Home - Manage ITT applications
               Class of degree
             </label>
             <span class="govuk-hint">For example, 2.1</span>
-            <input class="govuk-input" id="uk-other-degree-class" name="uk-other-degree-class" type="text" aria-describedby="uk-other-degree-class">
+            <input value="{{data['uk-other-degree-class']}}" class="govuk-input" id="uk-other-degree-class" name="uk-other-degree-class" type="text" aria-describedby="uk-other-degree-class">
           </div>
 
           <div class="govuk-form-group">
             <label class="govuk-label" for="uk-other-degree-year">
               Year qualification was awarded
             </label>
-            <input class="govuk-input address-box" id="uk-other-degree-year" name="uk-other-degree-year" type="text" aria-describedby="uk-other-degree-year">
+            <input value="{{data['uk-other-degree-year']}}" class="govuk-input address-box" id="uk-other-degree-year" name="uk-other-degree-year" type="text" aria-describedby="uk-other-degree-year">
           </div>
-          <button  class="govuk-button secondary-button" onclick="addRow('otherDegreeDiv',['uk-other-degree-type','uk-other-degree-subject','uk-other-degree-institution','uk-other-degree-class','uk-other-degree-year'])">Add another</button>
+          <a  class="govuk-button secondary-button" href="javascript:addRow('otherDegreeDiv',['uk-other-degree-type','uk-other-degree-subject','uk-other-degree-institution','uk-other-degree-class','uk-other-degree-year'])">Add another</a>
           <div class="govuk-form-group" id="otherDegreeDiv" style="display:none;">
             <table class="govuk-table" id="otherDegreeDivTable">
               <thead class="govuk-table__head">
@@ -249,24 +250,24 @@ Home - Manage ITT applications
             Start by giving us your degree for the subject you’d like to teach. You’ll then have the option to add other degrees.
           </p>
           <div class="govuk-form-group">
-            <label class="govuk-label" for="uk-degree-type">
+            <label class="govuk-label" for="international-degree-type">
               Type of degree
             </label>
-            <input class="govuk-input" id="uk-degree-type" name="uk-degree-type" type="text" aria-describedby="uk-degree-type">
+            <input value="{{data['international-degree-type']}}" class="govuk-input" id="international-degree-type" name="international-degree-type" type="text" aria-describedby="international-degree-type">
           </div>
 
           <div class="govuk-form-group">
-            <label class="govuk-label" for="uk-degree-subject">
+            <label class="govuk-label" for="international-degree-subject">
               Subject of degree
             </label>
-            <input class="govuk-input" id="uk-degree-subject" name="uk-degree-subject" type="text" aria-describedby="uk-degree-subject">
+            <input value="{{data['international-degree-subject']}}" class="govuk-input" id="international-degree-subject" name="international-degree-subject" type="text" aria-describedby="international-degree-subject">
           </div>
 
           <div class="govuk-form-group">
-            <label class="govuk-label" for="uk-degree-institution">
+            <label class="govuk-label" for="international-degree-institution">
               Institution where you studied
             </label>
-            <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+            <input value="{{data['international-degree-institution']}}" class="govuk-input" id="international-degree-institution" name="international-degree-institution" type="text" aria-describedby="international-degree-institution">
           </div>
 
           <div class="govuk-form-group">
@@ -274,14 +275,14 @@ Home - Manage ITT applications
               Class of degree
             </label>
             <span class="govuk-hint">For example, 2.1</span>
-            <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+            <input value="{{data['international-degree-class']}}" class="govuk-input" id="international-degree-class" name="international-degree-class" type="text" aria-describedby="international-degree-class">
           </div>
 
           <div class="govuk-form-group">
-            <label class="govuk-label" for="uk-degree-year">
+            <label class="govuk-label" for="international-degree-year">
               Year qualification was awarded
             </label>
-            <input class="govuk-input address-box" id="uk-degree-year" name="uk-degree-year" type="text" aria-describedby="uk-degree-year">
+            <input value="{{data['international-degree-year']}}" class="govuk-input address-box" id="international-degree-year" name="international-degree-year" type="text" aria-describedby="international-degree-year">
           </div>
 
           <div class="govuk-form-group">
@@ -291,11 +292,11 @@ Home - Manage ITT applications
               </label>
               <div class="govuk-radios">
                 <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="naric-yes" name="naric" type="radio" value="naric-yes" onclick="naricDetails(this,'naric-details')">
-                  <label class="govuk-label govuk-radios__label" for="naric-yes" >
+                  <input {{ checked('degree-naric','degree-naric-yes') }} class="govuk-radios__input" id="degree-naric-yes" name="degree-naric" type="radio" value="degree-naric-yes" onclick="naricDetails(this,'degree-naric-details','degree-naric-yes')">
+                  <label  class="govuk-label govuk-radios__label" for="degree-naric-yes" >
                     Yes
                   </label>
-                  <div id="naric-details" class="govuk-form-group govuk-inset-text" style="display:none;">
+                  <div id="degree-naric-details" class="govuk-form-group govuk-inset-text" style="display:none;">
                     <label class="govuk-label" for="naric-details-text">
                       Please enter the UK comparison grade from your statement of comparability
                     </label>
@@ -303,8 +304,8 @@ Home - Manage ITT applications
                   </div>
                 </div>
                 <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="naric-no" name="naric" type="radio" value="naric-no" onclick="naricDetails(this,'naric-details')">
-                  <label class="govuk-label govuk-radios__label" for="naric-no">
+                  <input {{ checked('degree-naric','degree-naric-no') }} class="govuk-radios__input" id="degree-naric-no" name="degree-naric" type="radio" value="degree-naric-no" onclick="naricDetails(this,'degree-naric-details','degree-naric-yes')">
+                  <label class="govuk-label govuk-radios__label" for="degree-naric-no">
                     No
                   </label>
                 </div>
@@ -316,9 +317,9 @@ Home - Manage ITT applications
             <p>
               Give details of your course structure and content to help your training provider understand the range of subjects you could teach.
             </p>
-            <input class="govuk-input subject-module" name="subject-module1" type="text" aria-describedby="subject-module">
-            <input class="govuk-input subject-module" name="subject-module2" type="text" aria-describedby="subject-module">
-            <input class="govuk-input subject-module" name="subject-module3" type="text" aria-describedby="subject-module">
+            <input value="{{data['international-subject-module1']}}" class="govuk-input subject-module" name="international-subject-module1" type="text" aria-describedby="subject-module">
+            <input value="{{data['international-subject-module1']}}" class="govuk-input subject-module" name="international-subject-module2" type="text" aria-describedby="subject-module">
+            <input value="{{data['international-subject-module1']}}" class="govuk-input subject-module" name="international-subject-module3" type="text" aria-describedby="subject-module">
             <a href="#" class="govuk-button secondary-button">Add another</a>
         </div>
 
@@ -331,43 +332,44 @@ Home - Manage ITT applications
             </summary>
             <div class="govuk-details__text">
               <div class="govuk-form-group">
-                <label class="govuk-label" for="uk-degree-type">
+                <label class="govuk-label" for="international-other-degree-type">
                   Type
                 </label>
-                <span id="uk-degree-type-hint" class="govuk-hint">
+                <span id="international-other-degree-type-hint" class="govuk-hint">
                   For example, BA, BSc, Masters, Phd, or other, please specify
                 </span>
-                <input class="govuk-input" id="uk-degree-type" name="uk-degree-type" type="text" aria-describedby="uk-degree-type">
+                <input value="{{data['international-other-degree-type']}}" class="govuk-input" id="international-other-degree-type" name="international-other-degree-type" type="text" aria-describedby="international-other-degree-type">
               </div>
 
               <div class="govuk-form-group">
-                <label class="govuk-label" for="uk-degree-subject">
+                <label class="govuk-label" for="international-other-degree-subject">
                   Subject of degree
                 </label>
-                <input class="govuk-input" id="uk-degree-subject" name="uk-degree-subject" type="text" aria-describedby="uk-degree-subject">
+                <input value="{{data['international-other-degree-subject']}}" class="govuk-input" id="international-other-degree-subject" name="international-other-degree-subject" type="text" aria-describedby="international-other-degree-subject">
               </div>
 
               <div class="govuk-form-group">
-                <label class="govuk-label" for="uk-degree-institution">
+                <label class="govuk-label" for="international-other-degree-institution">
                   Institution where you studied
                 </label>
-                <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+                <input value="{{data['international-other-degree-institution']}}" class="govuk-input" id="international-other-degree-institution" name="international-other-degree-institution" type="text" aria-describedby="international-other-degree-institution">
               </div>
 
               <div class="govuk-form-group">
-                <label class="govuk-label" for="uk-degree-institution">
+                <label class="govuk-label" for="international-other-degree-class">
                   Class of degree
                 </label>
                 <span class="govuk-hint">For example, 2.1</span>
-                <input class="govuk-input" id="uk-degree-institution" name="uk-degree-institution" type="text" aria-describedby="uk-degree-institution">
+                <input value="{{data['international-other-degree-class']}}" class="govuk-input" id="international-other-degree-class" name="international-other-degree-class" type="text" aria-describedby="international-other-degree-class">
               </div>
 
               <div class="govuk-form-group">
-                <label class="govuk-label" for="uk-degree-year">
+                <label class="govuk-label" for="international-other-degree-year">
                   Year qualification was awarded
                 </label>
-                <input class="govuk-input address-box" id="uk-degree-year" name="uk-degree-year" type="text" aria-describedby="uk-degree-year">
+                <input value="{{data['international-other-degree-year']}}" class="govuk-input address-box" id="international-other-degree-year" name="international-other-degree-year" type="text" aria-describedby="international-other-degree-year">
               </div>
+
               <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset">
                   <label class="govuk-label">
@@ -375,8 +377,8 @@ Home - Manage ITT applications
                   </label>
                   <div class="govuk-radios">
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="naric-yes" name="naric" type="radio" value="naric-yes" onclick="naricDetails(this,'naric-details-other')">
-                      <label class="govuk-label govuk-radios__label" for="naric-yes" >
+                      <input {{checked('naric-other','naric-other-yes')}} class="govuk-radios__input" id="naric-other-yes" name="naric-other" type="radio" value="naric-other-yes" onclick="naricDetails(this,'naric-details-other')">
+                      <label class="govuk-label govuk-radios__label" for="naric-other-yes" >
                         Yes
                       </label>
                       <div id="naric-details-other" class="govuk-form-group govuk-inset-text" style="display:none;">
@@ -387,7 +389,7 @@ Home - Manage ITT applications
                       </div>
                     </div>
                     <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="naric-no" name="naric" type="radio" value="naric-no" onclick="naricDetails(this,'naric-details-other')">
+                      <input {{checked('naric-other','naric-other-no')}} class="govuk-radios__input" id="naric-other-no" name="naric-other" type="radio" value="naric-other-no" onclick="naricDetails(this,'naric-details-other')">
                       <label class="govuk-label govuk-radios__label" for="naric-no">
                         No
                       </label>
@@ -395,7 +397,6 @@ Home - Manage ITT applications
                   </div>
                 </fieldset>
               </div>
-
 
               <a href="#" class="govuk-button secondary-button">Add another</a>
             </div>
@@ -414,28 +415,28 @@ Home - Manage ITT applications
       <span id="maths-gcse-hint" class="govuk-hint">
         GCSE, O level, or other, please specify
       </span>
-      <input class="govuk-input" id="maths-gcse-type" name="maths-gcse-type" type="text" aria-describedby="maths-gcse-type">
+      <input value="{{data['maths-gcse-type']}}" class="govuk-input" id="maths-gcse-type" name="maths-gcse-type" type="text" aria-describedby="maths-gcse-type">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="maths-gcse-institute">
         Institution where you studied
       </label>
-      <input class="govuk-input" id="maths-gcse-institute" name="maths-gcse-institute" type="text" aria-describedby="maths-gcse-institute">
+      <input value="{{data['maths-gcse-institute']}}" class="govuk-input" id="maths-gcse-institute" name="maths-gcse-institute" type="text" aria-describedby="maths-gcse-institute">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="maths-gcse-grade">
         Grade
       </label>
-      <input class="govuk-input" id="maths-gcse-grade" name="maths-gcse-grade" type="text" aria-describedby="maths-gcse-grade">
+      <input value="{{data['maths-gcse-grade']}}" class="govuk-input" id="maths-gcse-grade" name="maths-gcse-grade" type="text" aria-describedby="maths-gcse-grade">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="maths-gcse-year">
         Year
       </label>
-      <input class="govuk-input address-box" id="maths-gcse-year" name="maths-gcse-year" type="text" aria-describedby="maths-gcse-year">
+      <input value="{{data['maths-gcse-year']}}" class="govuk-input address-box" id="maths-gcse-year" name="maths-gcse-year" type="text" aria-describedby="maths-gcse-year">
     </div>
 
     <h3 class="govuk-heading-m form-sub-section">English GCSE or equivalent details</h3>
@@ -446,28 +447,28 @@ Home - Manage ITT applications
       <span id="maths-gcse-hint" class="govuk-hint">
         GCSE, O level, or other, please specify
       </span>
-      <input class="govuk-input" id="english-gcse-type" name="english-gcse-type" type="text" aria-describedby="english-gcse-type">
+      <input value="{{data['english-gcse-type']}}" class="govuk-input" id="english-gcse-type" name="english-gcse-type" type="text" aria-describedby="english-gcse-type">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="english-gcse-institute">
         Institution where you studied
       </label>
-      <input class="govuk-input" id="english-gcse-institute" name="english-gcse-institute" type="text" aria-describedby="english-gcse-institute">
+      <input value="{{data['english-gcse-institute']}}" class="govuk-input" id="english-gcse-institute" name="english-gcse-institute" type="text" aria-describedby="english-gcse-institute">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="english-gcse-grade">
         Grade
       </label>
-      <input class="govuk-input" id="english-gcse-grade" name="english-gcse-grade" type="text" aria-describedby="english-gcse-grade">
+      <input value="{{data['english-gcse-grade']}}" class="govuk-input" id="english-gcse-grade" name="english-gcse-grade" type="text" aria-describedby="english-gcse-grade">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="english-gcse-year">
         Year
       </label>
-      <input class="govuk-input address-box" id="english-gcse-year" name="english-gcse-year" type="text" aria-describedby="english-gcse-year">
+      <input value="{{data['english-gcse-year']}}" class="govuk-input address-box" id="english-gcse-year" name="english-gcse-year" type="text" aria-describedby="english-gcse-year">
     </div>
 
     <h3 class="govuk-heading-m form-sub-section">Science GCSE or equivalent details (for primary applicants only) </h3>
@@ -478,28 +479,28 @@ Home - Manage ITT applications
       <span id="science-gcse-hint" class="govuk-hint">
         GCSE, O level, or other, please specify
       </span>
-      <input class="govuk-input" id="english-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+      <input value="{{data['science-gcse-type']}}" class="govuk-input" id="science-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="science-gcse-institute">
         Institution where you studied
       </label>
-      <input class="govuk-input" id="science-gcse-institute" name="science-gcse-institute" type="text" aria-describedby="science-gcse-institute">
+      <input value="{{data['science-gcse-institute']}}" class="govuk-input" id="science-gcse-institute" name="science-gcse-institute" type="text" aria-describedby="science-gcse-institute">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="science-gcse-grade">
         Grade
       </label>
-      <input class="govuk-input" id="science-gcse-grade" name="science-gcse-grade" type="text" aria-describedby="science-gcse-grade">
+      <input value="{{data['science-gcse-grade']}}" class="govuk-input" id="science-gcse-grade" name="science-gcse-grade" type="text" aria-describedby="science-gcse-grade">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="science-gcse-year">
         Year
       </label>
-      <input class="govuk-input address-box" id="science-gcse-year" name="science-gcse-year" type="text" aria-describedby="science-gcse-year">
+      <input value="{{data['science-gcse-year']}}" class="govuk-input address-box" id="science-gcse-year" name="science-gcse-year" type="text" aria-describedby="science-gcse-year">
     </div>
 
     <details class="govuk-details">
@@ -511,31 +512,31 @@ Home - Manage ITT applications
       <div class="govuk-details__text">
         <h3 class="govuk-heading-m">Maths</h3>
         <div class="govuk-form-group">
-          <label class="govuk-label" for="maths-gcse-type">
+          <label class="govuk-label" for="international-maths-gcse-type">
             Type of qualification
           </label>
-          <input class="govuk-input" id="maths-gcse-type" name="maths-gcse-type" type="text" aria-describedby="maths-gcse-type">
+          <input value="{{data['international-maths-gcse-type']}}" class="govuk-input" id="international-maths-gcse-type" name="international-maths-gcse-type" type="text" aria-describedby="international-maths-gcse-type">
         </div>
 
         <div class="govuk-form-group">
           <label class="govuk-label" for="maths-gcse-institute">
             Institution where you studied
           </label>
-          <input class="govuk-input" id="maths-gcse-institute" name="maths-gcse-institute" type="text" aria-describedby="maths-gcse-institute">
+          <input value="{{data['international-maths-gcse-institute']}}" class="govuk-input" id="international-maths-gcse-institute" name="international-maths-gcse-institute" type="text" aria-describedby="international-maths-gcse-institute">
         </div>
 
         <div class="govuk-form-group">
-          <label class="govuk-label" for="maths-gcse-grade">
+          <label class="govuk-label" for="international-maths-gcse-grade">
             Grade
           </label>
-          <input class="govuk-input" id="maths-gcse-grade" name="maths-gcse-grade" type="text" aria-describedby="maths-gcse-grade">
+          <input value="{{data['international-maths-gcse-grade']}}" class="govuk-input" id="international-maths-gcse-grade" name="international-maths-gcse-grade" type="text" aria-describedby="international-maths-gcse-grade">
         </div>
 
         <div class="govuk-form-group">
           <label class="govuk-label" for="maths-gcse-year">
             Year
           </label>
-          <input class="govuk-input address-box" id="maths-gcse-year" name="maths-gcse-year" type="text" aria-describedby="maths-gcse-year">
+          <input value="{{data['international-maths-gcse-year']}}" class="govuk-input address-box" id="international-maths-gcse-year" name="international-maths-gcse-year" type="text" aria-describedby="international-maths-gcse-year">
         </div>
 
         <h3 class="govuk-heading-m form-sub-section">English</h3>
@@ -543,28 +544,28 @@ Home - Manage ITT applications
           <label class="govuk-label" for="english-gcse-type">
             Type of qualification
           </label>
-          <input class="govuk-input" id="english-gcse-type" name="english-gcse-type" type="text" aria-describedby="english-gcse-type">
+          <input value="{{data['international-english-gcse-type']}}" class="govuk-input" id="international-english-gcse-type" name="international-english-gcse-type" type="text" aria-describedby="international-english-gcse-type">
         </div>
 
         <div class="govuk-form-group">
           <label class="govuk-label" for="english-gcse-institute">
             Institution where you studied
           </label>
-          <input class="govuk-input" id="english-gcse-institute" name="english-gcse-institute" type="text" aria-describedby="english-gcse-institute">
+          <input value="{{data['international-english-gcse-institute']}}" class="govuk-input" id="international-english-gcse-institute" name="international-english-gcse-institute" type="text" aria-describedby="international-english-gcse-institute">
         </div>
 
         <div class="govuk-form-group">
           <label class="govuk-label" for="english-gcse-grade">
             Grade
           </label>
-          <input class="govuk-input" id="english-gcse-grade" name="english-gcse-grade" type="text" aria-describedby="english-gcse-grade">
+          <input value="{{data['international-english-gcse-grade']}}" class="govuk-input" id="international-english-gcse-grade" name="international-english-gcse-grade" type="text" aria-describedby="international-english-gcse-grade">
         </div>
 
         <div class="govuk-form-group">
           <label class="govuk-label" for="english-gcse-year">
             Year
           </label>
-          <input class="govuk-input address-box" id="english-gcse-year" name="english-gcse-year" type="text" aria-describedby="english-gcse-year">
+          <input value="{{data['international-english-gcse-year']}}" class="govuk-input address-box" id="international-english-gcse-year" name="international-english-gcse-year" type="text" aria-describedby="international-english-gcse-year">
         </div>
 
         <h3 class="govuk-heading-m form-sub-section">Science (for primary applicants only) </h3>
@@ -572,28 +573,28 @@ Home - Manage ITT applications
           <label class="govuk-label" for="science-gcse-type">
             Type of qualification
           </label>
-          <input class="govuk-input" id="english-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+          <input value="{{data['international-science-gcse-type']}}" class="govuk-input" id="international-science-gcse-type" name="international-science-gcse-type" type="text" aria-describedby="international-science-gcse-type">
         </div>
 
         <div class="govuk-form-group">
-          <label class="govuk-label" for="science-gcse-institute">
+          <label class="govuk-label" for="international-science-gcse-institute">
             Institution where you studied
           </label>
-          <input class="govuk-input" id="science-gcse-institute" name="science-gcse-institute" type="text" aria-describedby="science-gcse-institute">
+          <input class="govuk-input" id="international-science-gcse-institute" name="international-science-gcse-institute" type="text" aria-describedby="international-science-gcse-institute">
         </div>
 
         <div class="govuk-form-group">
-          <label class="govuk-label" for="science-gcse-grade">
+          <label class="govuk-label" for="international-science-gcse-grade">
             Grade
           </label>
-          <input class="govuk-input" id="science-gcse-grade" name="science-gcse-grade" type="text" aria-describedby="science-gcse-grade">
+          <input class="govuk-input" id="international-science-gcse-grade" name="international-science-gcse-grade" type="text" aria-describedby="international-science-gcse-grade">
         </div>
 
         <div class="govuk-form-group">
-          <label class="govuk-label" for="science-gcse-year">
+          <label class="govuk-label" for="international-science-gcse-year">
             Year
           </label>
-          <input class="govuk-input address-box" id="science-gcse-year" name="science-gcse-year" type="text" aria-describedby="science-gcse-year">
+          <input class="govuk-input address-box" id="international-science-gcse-year" name="international-science-gcse-year" type="text" aria-describedby="international-science-gcse-year">
         </div>
       </div>
     </details>
@@ -603,43 +604,43 @@ Home - Manage ITT applications
     </p>
     <h3 class="govuk-heading-s">GCSEs or equivalent</h3>
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-gcse-type">
+      <label class="govuk-label" for="other-GCSE-type">
         Type
       </label>
       <span class="govuk-hint">
         GCSE, O level or other, please specify
       </span>
-      <input class="govuk-input" id="other-gcse-type" name="science-gcse-type" type="text" aria-describedby="science-gcse-type">
+      <input value="{{data['other-GCSE-type']}}" class="govuk-input" id="other-GCSE-type" name="other-GCSE-type" type="text" aria-describedby="other-GCSE-type">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-gcse-subject">
+      <label class="govuk-label" for="other-GCSE-subject">
         Subject
       </label>
-      <input class="govuk-input" id="other-gcse-subject" name="other-gcse-subject" type="text" aria-describedby="other-gcse-subject">
+      <input value="{{data['other-GCSE-subject']}}" class="govuk-input" id="other-GCSE-subject" name="other-GCSE-subject" type="text" aria-describedby="other-GCSE-subject">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-gcse-institute">
+      <label class="govuk-label" for="other-GCSE-institute">
         Institution where you studied
       </label>
-      <input class="govuk-input" id="other-gcse-institute" name="other-gcse-institute" type="text" aria-describedby="other-gcse-institute">
+      <input value="{{data['other-GCSE-institute']}}" class="govuk-input" id="other-GCSE-institute" name="other-GCSE-institute" type="text" aria-describedby="other-GCSE-institute">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-gcse-grade">
+      <label class="govuk-label" for="other-GCSE-grade">
         Grade
       </label>
-      <input class="govuk-input" id="other-gcse-grade" name="other-gcse-grade" type="text" aria-describedby="other-gcse-grade">
+      <input value="{{data['other-GCSE-grade']}}" class="govuk-input" id="other-GCSE-grade" name="other-GCSE-grade" type="text" aria-describedby="other-GCSE-grade">
     </div>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="other-gcse-year">
+      <label class="govuk-label" for="other-GCSE-year">
         Year
       </label>
-      <input class="govuk-input address-box" id="other-gcse-year" name="other-gcse-year" type="text" aria-describedby="other-gcse-year">
+      <input value="{{data['other-GCSE-year']}}" class="govuk-input address-box" id="other-GCSE-year" name="other-GCSE-year" type="text" aria-describedby="other-GCSE-year">
     </div>
-    <button  class="govuk-button secondary-button" onclick="addRow('otherGCSEDiv',['other-gcse-type','other-gcse-subject','other-gcse-institute','other-gcse-grade', 'other-gcse-year'])">Add another</button>
+    <a  class="govuk-button secondary-button" href="javascript:addRow('otherGCSEDiv',['other-GCSE-type','other-GCSE-subject','other-GCSE-institute','other-GCSE-grade', 'other-GCSE-year'])">Add another</a>
     <div class="govuk-form-group" id="otherGCSEDiv" style="display:none;">
       <table class="govuk-table" id="otherGCSEDivTable">
         <thead class="govuk-table__head">
@@ -674,37 +675,37 @@ Home - Manage ITT applications
       <span class="govuk-hint">
         A level or other, please specify
       </span>
-      <input class="govuk-input" id="other-alevel-type" name="other-alevel-type" type="text" aria-describedby="other-alevel-type">
+      <input class="govuk-input" id="other-alevel-type" name="other-alevel-type" type="text" aria-describedby="other-alevel-type" value="{{data['other-alevel-type']}}">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="other-alevel-subject">
         Subject
       </label>
-      <input class="govuk-input" id="other-alevel-subject" name="other-alevel-subject" type="text" aria-describedby="other-alevel-subject">
+      <input class="govuk-input" id="other-alevel-subject" name="other-alevel-subject" type="text" aria-describedby="other-alevel-subject" value="{{data['other-alevel-subject']}}">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="other-alevel-institute">
         Institution where you studied
       </label>
-      <input class="govuk-input" id="other-alevel-institute" name="other-alevel-institute" type="text" aria-describedby="other-alevel-institute">
+      <input class="govuk-input" id="other-alevel-institute" name="other-alevel-institute" type="text" aria-describedby="other-alevel-institute" value="{{data['other-alevel-institute']}}">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="other-alevel-grade">
         Grade
       </label>
-      <input class="govuk-input" id="other-alevel-grade" name="other-alevel-grade" type="text" aria-describedby="other-alevel-grade">
+      <input class="govuk-input" id="other-alevel-grade" name="other-alevel-grade" type="text" aria-describedby="other-alevel-grade" value="{{data['other-alevel-grade']}}">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="other-alevel-year">
         Year
       </label>
-      <input class="govuk-input address-box" id="other-alevel-year" name="other-alevel-year" type="text" aria-describedby="other-alevel-year">
+      <input class="govuk-input address-box" id="other-alevel-year" name="other-alevel-year" type="text" aria-describedby="other-alevel-year" value="{{data['other-alevel-year']}}">
     </div>
-    <button  class="govuk-button secondary-button" onclick="addRow('otherALevelDiv',['other-alevel-type','other-alevel-subject','other-alevel-institute','other-alevel-grade', 'other-alevel-year'])">Add another</button>
+    <a  class="govuk-button secondary-button" href="javascript:addRow('otherALevelDiv',['other-alevel-type','other-alevel-subject','other-alevel-institute','other-alevel-grade', 'other-alevel-year'])">Add another</a>
     <div class="govuk-form-group" id="otherALevelDiv" style="display:none;">
       <table class="govuk-table" id="otherALevelDivTable">
         <thead class="govuk-table__head">
@@ -740,37 +741,37 @@ Home - Manage ITT applications
       <span class="govuk-hint">
         Foundation, BTECs, NVQs, City and Guilds, apprenticeships, musical grades, other, please specify
       </span>
-      <input class="govuk-input" id="other-type" name="other-type" type="text" aria-describedby="other-type">
+      <input class="govuk-input" id="other-type" name="other-type" type="text" aria-describedby="other-type" value="{{data['other-type']}}">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="other-subject">
         Subject
       </label>
-      <input class="govuk-input" id="other-subject" name="other-subject" type="text" aria-describedby="other-subject">
+      <input class="govuk-input" id="other-subject" name="other-subject" type="text" aria-describedby="other-subject" value="{{data['other-subject']}}">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="other-institute">
         Institution where you studied
       </label>
-      <input class="govuk-input" id="other-institute" name="other-institute" type="text" aria-describedby="other-institute">
+      <input class="govuk-input" id="other-institute" name="other-institute" type="text" aria-describedby="other-institute" value="{{data['other-institute']}}">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="other-grade">
         Grade
       </label>
-      <input class="govuk-input" id="other-grade" name="other-grade" type="text" aria-describedby="other-grade">
+      <input class="govuk-input" id="other-grade" name="other-grade" type="text" aria-describedby="other-grade" value="{{data['other-grade']}}">
     </div>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="other-year">
         Year
       </label>
-      <input class="govuk-input address-box" id="other-year" name="other-year" type="text" aria-describedby="other-year">
+      <input class="govuk-input address-box" id="other-year" name="other-year" type="text" aria-describedby="other-year" value="{{data['other-year']}}">
     </div>
-    <button  class="govuk-button secondary-button" onclick="addRow('otherDiv',['other-type','other-subject','other-institute','other-grade', 'other-year'])">Add another</button>
+    <a  class="govuk-button secondary-button" href="javascript:addRow('otherDiv',['other-type','other-subject','other-institute','other-grade', 'other-year'])">Add another</a>
     <div class="govuk-form-group" id="otherDiv" style="display:none;">
       <table class="govuk-table" id="otherDivTable">
         <thead class="govuk-table__head">
@@ -804,7 +805,7 @@ Home - Manage ITT applications
         </label>
         <div class="govuk-radios">
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="education-details-yes" name="education-details" type="radio" value="education-details-yes" onclick="educationDetails(this);">
+            <input {{checked('education-details','education-details-yes')}} class="govuk-radios__input" id="education-details-yes" name="education-details" type="radio" value="education-details-yes" onclick="educationDetails(this);">
             <label class="govuk-label govuk-radios__label" for="education-details-yes">
               Yes
             </label>
@@ -819,7 +820,7 @@ Home - Manage ITT applications
           </div>
 
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="education-details-no" name="education-details" type="radio" value="education-details-no" onclick="educationDetails(this);">
+            <input {{checked('education-details','education-details-no')}} class="govuk-radios__input" id="education-details-no" name="education-details" type="radio" value="education-details-no" onclick="educationDetails(this);">
             <label class="govuk-label govuk-radios__label" for="education-details-no">
               No
             </label>
@@ -828,13 +829,13 @@ Home - Manage ITT applications
         </div>
       </fieldset>
     </div>
-
+  </form>
   </div>
 </div>
 
 <div class="govuk-grid-row actions-section">
   <div class="govuk-grid-column-two-thirds">
-    <a href="index.html" class="govuk-button">Save and continue</a>
+    <a href="javascript: submitForm()" class="govuk-button">Save and continue</a>
   </br>
   <a href="index.html">Cancel</a>
 </div>
@@ -842,6 +843,25 @@ Home - Manage ITT applications
 <script type="text/javascript">
 moduleSuffix = 4;
 ukOtherDegreeSuffix = 2;
+
+window.onload = function(){
+  if (!sessionStorage.sectionFlags)
+  {
+    sessionStorage.setItem('sectionFlags','1');
+    sessionStorage.setItem('personalDetails','0');
+    sessionStorage.setItem('contactDetails','0');
+    sessionStorage.setItem('ukStatusDetails','0');
+    sessionStorage.setItem('educationDetails','0');
+    sessionStorage.setItem('workDetails','0');
+    sessionStorage.setItem('ambitionsDetails','0');
+  }
+}
+function submitForm()
+{
+  sessionStorage.setItem('educationDetails','1');
+  document.forms['education_details_form'].submit();
+}
+
 
 function addRow(divID, fields)
 {
@@ -860,25 +880,25 @@ function addRow(divID, fields)
     var cell = row.insertCell(index);
     cell.className = "govuk-table__cell";
     cell.innerHTML = document.getElementById(fields[index]).value;
-    console.log(fields[index]);
-    console.log(document.getElementById(fields[index]).value);
     document.getElementById(fields[index]).name = fields[index]+ukOtherDegreeSuffix;
+    document.getElementById(fields[index]).value = '';
   }
   ukOtherDegreeSuffix++;
 }
 
-function naricDetails(naricCheckBox,section)
+function naricDetails(naricRadio,section,value)
 {
   naric_details = document.getElementById(section);
-  if(naricCheckBox.value == "naric-yes" && naricCheckBox.checked == true)
+  if(naricRadio.value == value && naricRadio.checked == true)
     naric_details.style.display = "block";
   else
     naric_details.style.display = "none";
 }
-function criminalConviction(criminalCheckBox)
+
+function missing_GCSE(gcseCheckBox)
 {
-  convictionDetails = document.getElementById("criminal-conviction-details");
-  if(criminalCheckBox.value=="criminal-conviction-yes" && criminalCheckBox.checked == true)
+  convictionDetails = document.getElementById("missing-GCSE-details");
+  if(gcseCheckBox.value=="missing-GCSE-yes" && gcseCheckBox.checked == true)
   {
     convictionDetails.style.display="block";
   }
@@ -890,14 +910,14 @@ function criminalConviction(criminalCheckBox)
 
 function educationDetails(educationCheckBox)
 {
-  convictionDetails = document.getElementById("education-details");
+  missingGCSEDetails = document.getElementById("education-details");
   if(educationCheckBox.value=="education-details-yes" && educationCheckBox.checked == true)
   {
-    convictionDetails.style.display="block";
+    missingGCSEDetails.style.display="block";
   }
   else
   {
-    convictionDetails.style.display="none";
+    missingGCSEDetails.style.display="none";
   }
 }
 
