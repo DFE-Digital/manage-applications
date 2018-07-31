@@ -22,27 +22,27 @@ Home - Manage ITT applications
       Experience and motivation
     </h1>
     <form action="index.html" id="ambitions_details_form">
-    <div class="govuk-form-group">
+    <div class="govuk-form-group form-secondary-section">
       <label class="govuk-label bold-label" for="why">
         Why do you want to become a teacher?
       </label>
       <span id="more-detail-hint" class="govuk-hint">
         What motivates you to join the profession and why do you think you have potential as a teacher?
       </span>
-      <textarea class="govuk-textarea" id="why" name="why" rows="5" aria-describedby="why do you want to become a teacher"></textarea>
+      <textarea class="govuk-textarea" id="why" name="why" rows="5" aria-describedby="why do you want to become a teacher">{{data['why']}}</textarea>
     </div>
 
-    <div class="govuk-form-group">
+    <div class="govuk-form-group form-secondary-section">
       <label class="govuk-label bold-label" for="subject">
         Why do you want to teach this subject or age group?
       </label>
       <span id="more-detail-hint" class="govuk-hint">
         Bear in mind that you don't have to teach the subject of your degree. You can also complete a course to teach a subject you studied at A level, as a module of your degree, or that you have expertise in through work. Talk to your training provider, or learn more at <a href="https://getintoteaching.education.gov.uk/explore-my-options/teacher-training-routes/subject-knowledge-enhancement-ske-courses" target="_blank">Get into Teaching</a>.
       </span>
-      <textarea class="govuk-textarea" id="subject" name="subject" rows="5" aria-describedby="why do you want to teach this subject"></textarea>
+      <textarea class="govuk-textarea" id="subject" name="subject" rows="5" aria-describedby="why do you want to teach this subject">{{data['subject']}}</textarea>
     </div>
 
-    <div class="govuk-form-group">
+    <div class="govuk-form-group form-secondary-section">
       <label class="govuk-label bold-label" for="experience">
         Your experience working with children or in a school
       </label>
@@ -53,18 +53,16 @@ Home - Manage ITT applications
           </span>
         </summary>
         <div class="govuk-details__text">
-          <p>
             You can still submit an application without school experience but a few days observing in a school will help you decide if teaching is for you. <a href="https://getintoteaching.education.gov.uk/school-experience" target="_blank">Find out more</a>.
-          </p>
-          <p>
-            Tell us about your experiences working with children or in a school. Include voluntary and paid work and give us details of your role, responsibilities and length of involvement. You can include as many different types of work or experience as you like, including observation in a school.
-          </p>
         </div>
       </details>
-      <textarea class="govuk-textarea" id="experience" name="experience" rows="5" aria-describedby="What is your experience working with children"></textarea>
+      <span class="govuk-hint">
+        Tell us about your experiences working with children or in a school. Include voluntary and paid work and give us details of your role, responsibilities and length of involvement. You can include as many different types of work or experience as you like, including observation in a school.
+      </span>
+      <textarea class="govuk-textarea" id="experience" name="experience" rows="5" aria-describedby="What is your experience working with children">{{data['experience']}}</textarea>
     </div>
 
-    <div class="govuk-form-group">
+    <div class="govuk-form-group form-secondary-section">
       <fieldset class="govuk-fieldset">
         <label class="govuk-label bold-label">
           Is there anything else you’d like to tell us about your application?
@@ -74,22 +72,28 @@ Home - Manage ITT applications
         </span>
         <div class="govuk-radios">
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="work-details-yes" name="work-details" type="radio" value="work-details-yes" onclick="showWorkDetails(this)">
-            <label class="govuk-label govuk-radios__label" for="work-details-yes">
+            <input {{checked('application-details','application-details-yes')}} class="govuk-radios__input" id="application-details-yes" name="application-details" type="radio" value="application-details-yes" onclick="showApplicationDetails(this)">
+            <label class="govuk-label govuk-radios__label" for="application-details-yes">
               Yes
             </label>
-            <div class="govuk-inset-text" id="workDetails" style="display:none;">
+            <div class="govuk-inset-text" id="applicationDetails"
+            {% if checked('application-details','application-details-yes')%}
+            style="display:block;"
+            {% else %}
+            style="display:none;"
+            {% endif %}
+            >
               <div class="govuk-form-group">
                 <label class="govuk-label" for="more-detail">
                   Please give details
                 </label>
-                <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                <textarea class="govuk-textarea" id="application-detail" name="application-detail" rows="5" aria-describedby="application-detail-hint">{{data['application-detail']}}</textarea>
               </div>
             </div>
           </div>
           <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="work-details-no" name="work-details" type="radio" value="work-details-no" onclick="showWorkDetails(this)">
-            <label class="govuk-label govuk-radios__label" for="work-details-no">
+            <input {{checked('application-details','application-details-no')}} class="govuk-radios__input" id="application-details-no" name="application-details" type="radio" value="application-details-no" onclick="showApplicationDetails(this)">
+            <label class="govuk-label govuk-radios__label" for="application-details-no">
               No
             </label>
           </div>
@@ -125,6 +129,14 @@ function submitForm()
 {
   sessionStorage.setItem('ambitionsDetails','1');
   document.forms['ambitions_details_form'].submit();
+}
+function showApplicationDetails(applicationDetailsRadio)
+{
+  applicationDetailsSection = document.getElementById('applicationDetails');
+  if(applicationDetailsRadio.value == 'application-details-yes')
+    applicationDetailsSection.style.display="block";
+  else
+    applicationDetailsSection.style.display="none";
 }
 </script>
 

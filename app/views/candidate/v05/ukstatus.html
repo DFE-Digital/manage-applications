@@ -82,38 +82,43 @@ Home - Manage ITT applications
               </br>
               <a href="https://www.gov.uk/tier-4-general-visa" target="_blank">More on applying for a student visa</a>
             </div>
+
+
+            <div class="govuk-form-group form-secondary-section">
+              <fieldset class="govuk-fieldset">
+                <label class="govuk-label bold-label">
+                  Do you have the right to access public funds?
+                </label>
+                <span class="govuk-hint">
+                  (For example, <a href="https://getintoteaching.education.gov.uk/funding-and-salary/overview" target="_blank">student loans and bursaries</a>)
+                </br>
+                <a href="https://www.gov.uk/government/publications/public-funds--2/public-funds" target="_blank">More on who can access public funds</a>
+              </span>
+              <div class="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input {{ checked('public-funds','public-funds-yes') }} class="govuk-radios__input" id="public-funds-yes" name="public-funds" type="radio" value="public-funds-yes">
+                  <label class="govuk-label govuk-radios__label" for="public-funds-yes">
+                    Yes
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input {{ checked('public-funds','public-funds-no') }} class="govuk-radios__input" id="public-funds-no" name="public-funds" type="radio" value="public-funds-no">
+                  <label class="govuk-label govuk-radios__label" for="public-funds-no">
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+
           </div>
         </div>
       </div>
     </fieldset>
   </div>
 
-  <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset">
-      <label class="govuk-label bold-label">
-        Do you have the right to access public funds?
-      </label>
-      <span class="govuk-hint">
-        (For example, <a href="https://getintoteaching.education.gov.uk/funding-and-salary/overview" target="_blank">student loans and bursaries</a>)
-      </br>
-      <a href="https://www.gov.uk/government/publications/public-funds--2/public-funds" target="_blank">More on who can access public funds</a>
-    </span>
-    <div class="govuk-radios">
-      <div class="govuk-radios__item">
-        <input {{ checked('public-funds','public-funds-yes') }} class="govuk-radios__input" id="public-funds-yes" name="public-funds" type="radio" value="public-funds-yes">
-        <label class="govuk-label govuk-radios__label" for="public-funds-yes">
-          Yes
-        </label>
-      </div>
-      <div class="govuk-radios__item">
-        <input {{ checked('public-funds','public-funds-no') }} class="govuk-radios__input" id="public-funds-no" name="public-funds" type="radio" value="public-funds-no">
-        <label class="govuk-label govuk-radios__label" for="public-funds-no">
-          No
-        </label>
-      </div>
-    </div>
-  </fieldset>
-</div>
+
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
@@ -134,7 +139,7 @@ Home - Manage ITT applications
             <label class="govuk-label" for="reason">
               Please give details
             </label>
-            <textarea {{data['criminal-conviction-details']}} class="govuk-textarea" id="criminal-conviction-details" name="criminal-conviction-details" rows="5" aria-describedby="more-detail-hint"></textarea>
+            <textarea  class="govuk-textarea" id="criminal-conviction-details" name="criminal-conviction-details" rows="5" aria-describedby="more-detail-hint">{{data['criminal-conviction-details']}}</textarea>
           </div>
         </div>
       </div>

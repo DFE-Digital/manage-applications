@@ -16,7 +16,7 @@ Home - Manage ITT applications
 </div>
 <a href="#" class="govuk-back-link" onclick="window.history.back();">Back</a>
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">
       Work history
     </h1>
@@ -222,21 +222,28 @@ Home - Manage ITT applications
           </span>
           <div class="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="work-details-yes" name="work-details" type="radio" value="work-details-yes" onclick="showWorkDetails(this)">
+              <input {{checked('work-details','work-details-yes')}} class="govuk-radios__input" id="work-details-yes" name="work-details" type="radio" value="work-details-yes" onclick="showWorkDetails(this)">
               <label class="govuk-label govuk-radios__label" for="work-details-yes">
                 Yes
               </label>
-              <div class="govuk-inset-text" id="workDetails" style="display:none;">
+              <div class="govuk-inset-text" id="workDetails"
+              {% if checked('work-details','work-details-yes') %}
+                style="display:block;"
+              {% else %}
+                style="display:none;"
+              {% endif %}
+
+              >
                 <div class="govuk-form-group">
-                  <label class="govuk-label" for="more-detail">
+                  <label class="govuk-label" for="work-detail">
                     Please give details
                   </label>
-                  <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                  <textarea class="govuk-textarea" id="work-detail-description" name="work-detail-description" rows="5" aria-describedby="more-detail-hint">{{data['work-detail-description']}}</textarea>
                 </div>
               </div>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="work-details-no" name="work-details" type="radio" value="work-details-no" onclick="showWorkDetails(this)">
+              <input {{checked('work-details','work-details-no')}} class="govuk-radios__input" id="work-details-no" name="work-details" type="radio" value="work-details-no" onclick="showWorkDetails(this)">
               <label class="govuk-label govuk-radios__label" for="work-details-no">
                 No
               </label>
@@ -252,7 +259,7 @@ Home - Manage ITT applications
 
 <div class="govuk-grid-row actions-section">
   <div class="govuk-grid-column-two-thirds">
-    <a href="index.html" class="govuk-button">Save and continue</a>
+    <a href="javascript:submitForm()" class="govuk-button">Save and continue</a>
   </br>
   <a href="index.html">Cancel</a>
 </div>
