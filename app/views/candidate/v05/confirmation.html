@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% from "panel/macro.njk" import govukPanel %}
+
+{% block pageTitle %}
+  Home - Manage ITT applications
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          {{ govukPanel({
+            headingLevel: 1,
+            titleText: "Your application has been sent"
+          }) }}
+          <p class="govuk-body"><a href="/prototype-admin/clear-data">Clear data</a></p>
+        </div>
+      </div>
+    </main>
+  </div>
+{% endblock %}

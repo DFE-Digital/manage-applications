@@ -11,6 +11,8 @@ const nunjucks = require('nunjucks')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 
+dotenv.config()
+
 // Local dependencies
 const config = require('./app/config.js')
 const documentationRoutes = require('./docs/documentation_routes.js')
@@ -20,7 +22,6 @@ const utils = require('./lib/utils.js')
 
 const app = express()
 const documentationApp = express()
-dotenv.config()
 
 // Set cookies for use in cookie banner.
 app.use(cookieParser())

@@ -4,7 +4,7 @@
 Home - Manage ITT applications
 {% endblock %}
 
-{% block content %}
+{% block beforeContent %}
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content"><strong class="govuk-tag govuk-phase-banner__content__tag ">
     beta
@@ -15,6 +15,9 @@ Home - Manage ITT applications
 </p>
 </div>
 <a href="#" class="govuk-back-link" onclick="window.history.back();">Back</a>
+{% endblock %}
+
+{% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">
@@ -99,7 +102,9 @@ Home - Manage ITT applications
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds application-section">
-    <a href="#" class="govuk-button">Submit application</a>
+    <form action="/candidate/v05/index" id="personal_details_form" method="post" class="form">
+      <button class="govuk-button">Submit application</button>
+    </form>
   </div>
 </div>
 
